@@ -1,0 +1,33 @@
+.conference-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .category {
+    background-color: black;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 12px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  
+  .conference-image {
+    width: 80%;
+    max-width: 100px;
+  }
+  
+  .conference-title {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  
+  .conference-info {
+    font-size: 14px;
+    color: gray;
+  }
+  
