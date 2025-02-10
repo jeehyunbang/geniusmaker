@@ -1,29 +1,44 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
 from .models import Event
-from .serializers import EventSerializer
+from .serializers import EventSearchSerializer, EventDetailSerializer
 
 class EventSearchView(APIView):
     """
-    행사 검색 API
-    GET /api/events/search?keyword=<keyword>&category=<category>&area=<region>
+    행사 검색 API (모든 사용자 접근 가능)
     """
+    permission_classes = [AllowAny]
+
     def get(self, request):
         keyword = request.GET.get("keyword", "")
-        category = request.GET.get("category", "")
-        area = request.GET.get("area", "")
+        region = request.GET.get("region", "")
+        is_online = request.GET.get("is_online", "")
 
-        # 기본적으로 모든 행사 데이터를 가져옴
         events = Event.objects.all()
-
-        # 검색 조건에 맞춰 필터링
         if keyword:
             events = events.filter(title__icontains=keyword)
-        if category:
-            events = events.filter(category__icontains=category)
-        if area:
-            events = events.filter(region__icontains=area)
+        if region:
+            events = events.filter(region__icontains=region)
+        if is_online.lower() == "true":
+            events = events.filter(is_online=True)
+        elif is_online.lower() == "false":
+            events = events.filter(is_online=False)
 
-        # JSON 응답 생성
-        serializer = EventSerializer(events, many=True)
+        serializer = EventSearchSerializer(events, many=True)
         return Response({"message": "행사 정보 검색 성공!", "data": {"events": serializer.data}})
+
+
+class EventDetailView(APIView):
+    """
+    행사 상세 조회 API (모든 사용자 접근 가능)
+    """
+    permission_classes = [AllowAny]
+
+    def get(self, request, event_id):
+        try:
+            event = Event.objects.get(id=event_id)
+            serializer = EventDetailSerializer(event)
+            return Response({"message": "행사 상세 정보 조회 성공!", "data": serializer.data})
+        except Event.DoesNotExist:
+            return Response({"error": "해당 행사 정보를 찾을 수 없습니다."}, status=404)
