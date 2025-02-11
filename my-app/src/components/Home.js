@@ -1,27 +1,30 @@
 import React, { useState } from 'react';
 import '../css/Home.css';
+import LoginModal from './LoginModal'; // LoginModal 컴포넌트 추가
 
 function Home() {
   const user = { nickname: '린' };
   const [isModalOpen, setIsModalOpen] = useState(false); // 모달 상태 관리
 
   const handleOpenModal = () => {
-    setIsModalOpen(true); // 모달 열기
+    setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
-    setIsModalOpen(false); // 모달 닫기
+    setIsModalOpen(false);
   };
+
   const [selected, setSelected] = useState('학회정보'); // 초기 상태는 '학회정보'
 
   const handleButtonClick = (type) => {
-    setSelected(type); // 버튼 클릭 시 상태 변경
+    setSelected(type);
   };
+
   const [data] = useState([
     {
       id: 1,
       category: '디자인',
-      logo: 'https://design-science.or.kr/media?key=designScience/homepage/logo/f7f69e79-435c-4a0d-8546-d17e70fed59a.png', 
+      logo: 'https://design-science.or.kr/media?key=designScience/homepage/logo/f7f69e79-435c-4a0d-8546-d17e70fed59a.png',
       title: '한국디자인학회',
       location: '성남시',
       type: '오프라인',
@@ -37,7 +40,7 @@ function Home() {
     {
       id: 3,
       category: '디자인',
-      logo: 'https://design-science.or.kr/media?key=designScience/homepage/logo/f7f69e79-435c-4a0d-8546-d17e70fed59a.png', 
+      logo: 'https://design-science.or.kr/media?key=designScience/homepage/logo/f7f69e79-435c-4a0d-8546-d17e70fed59a.png',
       title: '한국디자인학회',
       location: '성남시',
       type: '오프라인',
@@ -45,18 +48,20 @@ function Home() {
     {
       id: 4,
       category: '디자인',
-      logo: 'https://design-science.or.kr/media?key=designScience/homepage/logo/f7f69e79-435c-4a0d-8546-d17e70fed59a.png', 
+      logo: 'https://design-science.or.kr/media?key=designScience/homepage/logo/f7f69e79-435c-4a0d-8546-d17e70fed59a.png',
       title: '한국디자인학회',
       location: '성남시',
       type: '오프라인',
     },
   ]);
+
   return (
     <div className="home-content">
       {/* 상단 두 개 박스 */}
       <div className="top-container">
         <div className="gray-box L"></div>
       </div>
+
       {/* 로그인 섹션 */}
       <div className="login-section">
         <p className="login-tooltip">
@@ -66,31 +71,10 @@ function Home() {
           로그인
         </button>
       </div>
-      {/* 모달 */}
-      {isModalOpen && (
-        <div className="modal-overlay" onClick={handleCloseModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={handleCloseModal}>
-              &times;
-            </button>
-            <div className="modal-logo">Logo</div>
-            <input type="email" placeholder="이메일" className="modal-input" />
-            <input type="password" placeholder="비밀번호" className="modal-input" />
-            <button className="modal-login-button">로그인</button>
-            <div className="modal-links">
-              <span>비밀번호 찾기</span> | <span>회원가입</span> | <span>아이디(이메일) 찾기</span>
-            </div>
-            <div className="social-login">
-              <div className="social-icons">
-                <div className="social-icon">카카오톡</div>
-                <div className="social-icon">Google</div>
-                <div className="social-icon">GitHub</div>
-                <div className="social-icon">Apple</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+
+      {/* 로그인 모달 */}
+      <LoginModal isOpen={isModalOpen} toggleModal={handleCloseModal} />
+
       {/* 글귀와 버튼 */}
       <div className="info-section">
         <p className="info-text">
