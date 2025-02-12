@@ -23,6 +23,7 @@ public class AuthController {
         authService.saveMember(
             request.email(),
             request.password(),
+            request.name(),
             request.memberType()
         );
 
