@@ -1,3 +1,44 @@
+/* 블러 처리 (학회 정보만) */
+.blurred {
+    position: relative;
+    filter: blur(6px); /* 블러 효과 */
+    pointer-events: none; /* 클릭 방지 */
+}
+
+/* 로그인 안내 메시지 및 버튼 */
+.login-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 10;
+    width: 80%;
+    max-width: 300px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 로그인 버튼 */
+.login-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.login-button:hover {
+    background-color: #0056b3;
+}
+
+
 /* 전체 컨테이너 스타일 */
 .conference-detail-container {
     max-width: 900px;

@@ -3,12 +3,12 @@ import { Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 import { FaSearch } from 'react-icons/fa';
 import Conference from './components/Conference';
-import ConferenceDetail from './components/ConferenceDetail'; // 학회 상세 페이지 추가
 import Event from './components/Event';
 import Home from './components/Home';
 import Member from './components/Member';
 import SignupForm from './components/SignupForm';
 import LoginModal from './components/LoginModal';
+import ConferenceDetail from "./components/ConferenceDetail";
 
 function App() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -47,7 +47,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/conferences" element={<Conference />} />
-        <Route path="/conferences/:conferenceId" element={<ConferenceDetail />} /> {/* 학회 상세 페이지 추가 */}
+        <Route path="/conferences/:conferenceId" element={<ConferenceDetail toggleModal={toggleModal} />} />
         <Route path="/events" element={<Event />} />
         <Route path="/members" element={<Member />} />
         <Route path="/signup" element={<SignupForm />} />
