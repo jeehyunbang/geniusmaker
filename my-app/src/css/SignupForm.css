@@ -1,5 +1,5 @@
 /* 전체 레이아웃 */
-.container {
+.signupform-container {
   display: flex;
   justify-content: space-between; /* 좌우 배치 */
   align-items: flex-start;
@@ -12,39 +12,39 @@
 }
 
 /* 왼쪽 설명 영역 */
-.form-left {
+.signupform-left {
   flex: 1;
   max-width: 300px; /* 고정된 크기 */
-  padding-right: 20px;
+  padding-right: 30px;
 }
 
-.title {
+.signupform-title {
   font-size: 32px;
   font-weight: bold;
   color: #007bff;
   margin-bottom: 20px;
 }
 
-.subtitle {
+.signupform-subtitle {
   font-size: 18px;
   color: #333;
   margin-bottom: 20px;
   line-height: 1.5;
 }
 
-.note {
+.signupform-note {
   font-size: 14px;
   color: #007bff;
 }
 
 /* 오른쪽 입력 폼 영역 */
-.form-right {
+.signupform-right {
   flex: 2;
   max-width: 800px; /* 고정된 크기 */
 }
 
 /* 입력 필드 공통 */
-.input-group {
+.signupform-input-group {
   display: flex;
   align-items: center;
   border: 1px solid #ddd;
@@ -54,14 +54,14 @@
   position: relative;
 }
 
-.input-group .input-text {
+.signupform-input-text {
   flex: 1;
   border: none;
   outline: none;
   font-size: 14px;
 }
 
-.input-group .domain-select {
+.signupform-domain-select {
   margin-left: 5px;
   padding: 8px;
   border: none;
@@ -71,27 +71,26 @@
   color: #666;
 }
 
-.email-domain
-{
+.signupform-email-domain {
   font-size: 25px;
   font-weight: bold;
 }
 
-.icon {
+.signupform-icon {
   position: absolute;
   right: 10px; /* 입력 필드 가장 오른쪽 */
   color: #888;
   cursor: pointer;
 }
 
-.helper-text {
+.signupform-helper-text {
   font-size: 12px;
   color: #007bff;
   margin-top: 5px;
 }
 
 /* 회원가입 버튼 */
-.submit-button {
+.signupform-submit-button {
   width: 100%; /* 버튼 전체 너비 */
   max-width: 300px; /* 고정된 최대 크기 */
   margin: 20px auto; /* 가운데 정렬 */
@@ -106,16 +105,16 @@
   transition: background 0.3s ease;
 }
 
-.submit-button:hover {
+.signupform-submit-button:hover {
   background: #0056b3;
 }
 
 /* 고정된 위치와 크기 */
-.form-group {
+.signupform-group {
   margin-bottom: 20px;
 }
 
-.form-group label {
+.signupform-group label {
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 5px;
@@ -123,7 +122,7 @@
   color: #333;
 }
 
-.required {
+.signupform-required {
   color: #007bff;
   margin-right: 5px;
   font-weight: bold;
