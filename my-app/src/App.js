@@ -8,11 +8,9 @@ import Home from './components/Home';
 import Member from './components/Member';
 import SignupForm from './components/SignupForm';
 import LoginModal from './components/LoginModal';
-<<<<<<< Updated upstream
 import ConferenceDetail from "./components/ConferenceDetail";
-=======
 import Select from './components/Select'; // Select 컴포넌트 추가
->>>>>>> Stashed changes
+
 
 function App() {
   const [isModalOpen, setModalOpen] = useState(false);
