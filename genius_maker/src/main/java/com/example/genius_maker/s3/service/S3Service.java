@@ -42,7 +42,8 @@ public class S3Service {
 
             log.info("이미지 업로드 완료! 원본 이미지 이름 : {}, 업로드 이미지 이름 : {}", image.getOriginalFilename(), uploadFileName);
         } catch (final Exception e) {
-            log.error("이미지 업로드에 문제가 발생했습니다. 이미지 이름 : {}", image.getOriginalFilename());
+            log.error("이미지 업로드에 문제가 발생했습니다. 이미지 이름 : {}", image.getOriginalFilename(), e);
+            throw new IllegalStateException("이미지 업로드에 실패했습니다.");
         }
 
         return s3Client.getUrl(bucketName, uploadFileName).toString();
