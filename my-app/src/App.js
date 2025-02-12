@@ -6,6 +6,7 @@ import Conference from './components/Conference';
 import Event from './components/Event';
 import Home from './components/Home';
 import Member from './components/Member';
+import SignupForm from './components/SignupForm'; // 추가
 import LoginModal from './components/LoginModal'; // 추가
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
         <Route path="/conferences" element={<Conference />} />
         <Route path="/events" element={<Event />} />
         <Route path="/members" element={<Member />} />
+        <Route path="/signup" element={<SignupForm />} /> {/* 회원가입 경로 추가 */}
       </Routes>
     </div>
   );

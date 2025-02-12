@@ -1,0 +1,132 @@
+/* 전체 레이아웃 */
+.container {
+  display: flex;
+  justify-content: space-between; /* 왼쪽과 오른쪽 여백 확보 */
+  align-items: flex-start; /* 위쪽 정렬 */
+  min-height: 100vh;
+  padding: 50px 100px; /* 전체 화면에 적절한 패딩 추가 */
+  background-color: #ffffff;
+  box-sizing: border-box;
+}
+
+/* 왼쪽 설명 영역 */
+.form-left {
+  flex: 1;
+  padding-right: 50px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.note {
+  font-size: 14px;
+  color: #007bff;
+}
+
+/* 오른쪽 입력 폼 영역 */
+.form-right {
+  flex: 1.5;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.required {
+  color: #007bff;
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+/* 라디오 버튼 그룹 */
+.radio-group {
+  display: flex;
+  gap: 15px;
+}
+
+.radio-group label {
+  font-size: 14px;
+  color: #555;
+  display: flex;
+  align-items: center;
+}
+
+.radio-group input {
+  margin-right: 5px;
+}
+
+/* 입력 필드 */
+.input-group {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.input-group .input-text {
+  flex-grow: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+.input-group .email-domain {
+  padding: 10px;
+  background: #f3f3f3;
+  font-size: 14px;
+  color: #666;
+}
+
+.input-text {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+}
+
+.input-text:focus {
+  border-color: #007bff;
+}
+
+/* 가입하기 버튼 */
+.submit-button {
+  width: 200px; /* 버튼 크기 고정 */
+  background: #007bff;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 15px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  display: block;
+  margin: 30px auto; /* 가운데 정렬 */
+}
+
+.submit-button:hover {
+  background: #0056b3;
+}
