@@ -8,7 +8,11 @@ import Home from './components/Home';
 import Member from './components/Member';
 import SignupForm from './components/SignupForm';
 import LoginModal from './components/LoginModal';
+<<<<<<< Updated upstream
 import ConferenceDetail from "./components/ConferenceDetail";
+=======
+import Select from './components/Select'; // Select 컴포넌트 추가
+>>>>>>> Stashed changes
 
 function App() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -22,7 +26,7 @@ function App() {
       <header className="header">
         <div className="top-header">
           <div className="auth-links">
-            <Link to="/signup" className="auth-link">회원가입</Link>
+            <Link to="/select" className="auth-link">회원가입</Link> {/* 회원가입 경로 수정 */}
             <button className="nav-login-btn" onClick={toggleModal}>로그인</button>
           </div>
         </div>
@@ -50,6 +54,7 @@ function App() {
         <Route path="/conferences/:conferenceId" element={<ConferenceDetail toggleModal={toggleModal} />} />
         <Route path="/events" element={<Event />} />
         <Route path="/members" element={<Member />} />
+        <Route path="/select" element={<Select />} /> {/* Select 컴포넌트 라우트 추가 */}
         <Route path="/signup" element={<SignupForm />} />
       </Routes>
     </div>

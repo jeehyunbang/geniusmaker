@@ -12,13 +12,11 @@ const Member = () => {
     <div className="member-page">
       {/* 마이페이지 제목 */}
       <header className="member-header">마이페이지</header>
-
       {/* 회원 정보 */}
       <section className="member-info">
         {/* 회원정보 제목 + "정보 수정" 버튼 배치 */}
         <div className="info-header">
           <h2>회원정보</h2>
-          <button className="edit-button">정보 수정 &gt;</button>
         </div>
 
         <div className="info-container">
