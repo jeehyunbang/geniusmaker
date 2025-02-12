@@ -68,9 +68,11 @@
   /* 추가 링크 */
   .custom-extra-links {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; 
+    gap: 100px; 
     margin-top: 10px;
-  }
+}
+
   
   .custom-extra-links a {
     color: #000000;
