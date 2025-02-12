@@ -12,8 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.UUID;
-
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 @Service
@@ -26,7 +24,12 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public void saveMember(final String email, final String password, final String memberTypeValue) {
+    public void saveMember(
+        final String email,
+        final String password,
+        final String name,
+        final String memberTypeValue
+    ) {
         final MemberType memberType = MemberType.valueOf(memberTypeValue.toUpperCase());
         final Member savedMember = memberRepository.save(
             new Member(
@@ -37,14 +40,10 @@ public class AuthService {
         );
 
         if (memberType == MemberType.PRIVATE) {
-            privateMemberInfoRepository.save(new PrivateMemberInfo("개인-" + getUuid(), savedMember));
+            privateMemberInfoRepository.save(new PrivateMemberInfo(name, savedMember));
         } else if (memberType == MemberType.CONFERENCE) {
-            conferenceMemberInfoRepository.save(new ConferenceMemberInfo("학회-" + getUuid(), savedMember));
+            conferenceMemberInfoRepository.save(new ConferenceMemberInfo(name, savedMember));
         }
-    }
-
-    private String getUuid() {
-        return UUID.randomUUID().toString();
     }
 
     public String login(final String email, final String password) {
