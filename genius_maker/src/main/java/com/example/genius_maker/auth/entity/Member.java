@@ -16,13 +16,13 @@ public class Member extends BaseTimeEntity {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 20, nullable = false)
+    @Column(name = "type", length = 20, nullable = false)
     private MemberType memberType;
 
-    @Column(length = 100, nullable = false)
+    @Column(name = "email", length = 100, nullable = false)
     private String email;
 
-    @Column(length = 1000, nullable = false)
+    @Column(name = "password", length = 1000, nullable = false)
     private String password;
 
     public Member(MemberType memberType, String email, String password) {
