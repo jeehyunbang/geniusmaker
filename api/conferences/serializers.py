@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Conference
 
-class ConferenceSerializer(serializers.ModelSerializer):
+class ConferenceSearchSerializer(serializers.ModelSerializer):
     """학회 검색 시 간단한 정보만 제공"""
     class Meta:
         model = Conference
@@ -11,4 +11,7 @@ class ConferenceDetailSerializer(serializers.ModelSerializer):
     """학회 상세 조회 시 모든 정보 제공"""
     class Meta:
         model = Conference
-        fields = "__all__"  # 🔥 상세 조회에서는 모든 필드 제공
+        fields = [
+            "id", "thumbnail_url", "name", "region", "category", "description",
+            "fee", "join_path", "contact"
+        ]

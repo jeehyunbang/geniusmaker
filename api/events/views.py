@@ -6,7 +6,7 @@ from .serializers import EventSearchSerializer, EventDetailSerializer
 
 class EventSearchView(APIView):
     """
-    행사 검색 API (모든 사용자 접근 가능)
+    행사 검색 API
     """
     permission_classes = [AllowAny]
 
@@ -26,12 +26,11 @@ class EventSearchView(APIView):
             events = events.filter(is_online=False)
 
         serializer = EventSearchSerializer(events, many=True)
-        return Response({"message": "행사 정보 검색 성공!", "data": {"events": serializer.data}})
-
+        return Response({"message": "행사 검색 성공!", "data": {"events": serializer.data}})
 
 class EventDetailView(APIView):
     """
-    행사 상세 조회 API (모든 사용자 접근 가능)
+    행사 상세 조회 API
     """
     permission_classes = [AllowAny]
 
@@ -41,4 +40,4 @@ class EventDetailView(APIView):
             serializer = EventDetailSerializer(event)
             return Response({"message": "행사 상세 정보 조회 성공!", "data": serializer.data})
         except Event.DoesNotExist:
-            return Response({"error": "해당 행사 정보를 찾을 수 없습니다."}, status=404)
+            return Response({"error": "해당 행사를 찾을 수 없습니다."}, status=404)
