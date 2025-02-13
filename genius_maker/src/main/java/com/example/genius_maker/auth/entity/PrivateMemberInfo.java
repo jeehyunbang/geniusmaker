@@ -1,6 +1,5 @@
 package com.example.genius_maker.auth.entity;
 
-import com.example.genius_maker.common.audit.entity.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -8,27 +7,59 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "private_member_info")
 @Entity
-public class PrivateMemberInfo extends BaseTimeEntity {
+public class PrivateMemberInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "email", length = 100, nullable = false)
+    private String email;
+
+    @Column(name = "password", length = 1000, nullable = false)
+    private String password;
+
     @Column(name = "name", length = 100, nullable = false)
     private String name;
 
-    @JoinColumn(name = "member_id")
-    @OneToOne(fetch = FetchType.LAZY)
-    private Member member;
+    @Column(name = "team", length = 100, nullable = true)
+    private String team;
 
-    public PrivateMemberInfo(final String name, final Member member) {
-        this(null, name, member);
+    @Column(name = "interest_research", length = 100, nullable = true)
+    private String interestResearch;
+
+    public PrivateMemberInfo(
+        final String email,
+        final String password,
+        final String name,
+        final String team,
+        final String interestResearch
+    ) {
+        this(
+            null,
+            email,
+            password,
+            name,
+            team,
+            interestResearch
+        );
     }
 
-    public PrivateMemberInfo(final Long id, final String name, final Member member) {
+    public PrivateMemberInfo(
+        final Long id,
+        final String email,
+        final String password,
+        final String name,
+        final String team,
+        final String interestResearch
+    ) {
         this.id = id;
+        this.email = email;
+        this.password = password;
         this.name = name;
-        this.member = member;
+        this.team = team;
+        this.interestResearch = interestResearch;
     }
 }

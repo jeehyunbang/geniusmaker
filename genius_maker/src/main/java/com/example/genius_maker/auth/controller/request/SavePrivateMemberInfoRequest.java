@@ -1,9 +1,10 @@
 package com.example.genius_maker.auth.controller.request;
 
-public record RegisterRequest(
+public record SavePrivateMemberInfoRequest(
     String email,
     String password,
     String name,
-    String memberType
+    String team,
+    String interestResearch
 ) {
 }

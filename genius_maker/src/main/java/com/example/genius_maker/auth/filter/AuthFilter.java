@@ -19,7 +19,8 @@ import java.util.List;
 public class AuthFilter implements Filter {
 
     private static final List<String> WHITE_LIST = List.of(
-        "/api/members/register",
+        "/api/members/private-register",
+        "/api/members/conference-register",
         "/api/members/login"
     );
 

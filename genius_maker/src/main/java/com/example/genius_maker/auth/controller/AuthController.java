@@ -1,7 +1,8 @@
 package com.example.genius_maker.auth.controller;
 
 import com.example.genius_maker.auth.controller.request.LoginRequest;
-import com.example.genius_maker.auth.controller.request.RegisterRequest;
+import com.example.genius_maker.auth.controller.request.SaveConferenceMemberInfoRequest;
+import com.example.genius_maker.auth.controller.request.SavePrivateMemberInfoRequest;
 import com.example.genius_maker.auth.controller.response.LoginResponse;
 import com.example.genius_maker.auth.resolver.AuthenticatedMemberId;
 import com.example.genius_maker.auth.service.AuthService;
@@ -16,17 +17,19 @@ public class AuthController {
 
     private final AuthService authService;
 
-    @PostMapping("/register")
-    public ApiResponse<Void> register(
-        @RequestBody final RegisterRequest request
+    @PostMapping("/private-register")
+    public ApiResponse<Void> savePrivateMemberInfo(
+        @RequestBody final SavePrivateMemberInfoRequest request
     ) {
-        authService.saveMember(
-            request.email(),
-            request.password(),
-            request.name(),
-            request.memberType()
-        );
+        authService.savePrivateMemberInfo(request);
+        return ApiResponse.success("회원 가입 성공!");
+    }
 
+    @PostMapping("/conference-register")
+    public ApiResponse<Void> saveConferenceMemberInfo(
+        @RequestBody final SaveConferenceMemberInfoRequest request
+    ) {
+        authService.saveConferenceMemberInfo(request);
         return ApiResponse.success("회원 가입 성공!");
     }
 
