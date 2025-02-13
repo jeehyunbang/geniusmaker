@@ -62,30 +62,32 @@
   padding: 0 20px;
 }
 
-.logo {
-  font-size: 1.7rem;
-  font-weight: bold;
-  color: #000;
-  text-decoration: none;
-  margin-left: 30px;
+
+.logo-image {
+  margin-left: 40px;
+  margin-top: -20px; /* 위로 올리기 */
+  width: 250px; /* 원하는 크기로 조정 */
+  height: auto; /* 비율 유지 */
 }
 
 .nav-container {
   display: flex;
   align-items: center;
-  margin-left: auto;
+  margin-left: -50px; /* 기존보다 왼쪽으로 조금 이동 */
 }
 
 .nav {
   display: flex;
   list-style: none;
-  margin: 0;
   padding: 0;
+  margin-left: -500px; /* 네비게이션 전체를 왼쪽으로 이동 */
 }
 
 .nav li {
-  margin: 0 15px;
+  margin-right: 45px; /* 메뉴 간 간격 유지 */
 }
+
+
 
 .nav li a {
   text-decoration: none;
@@ -99,17 +101,4 @@
   color: #555;
 }
 
-.search-icon {
-  font-size: 1.5rem;
-  color: #000;
-  cursor: pointer;
-  margin-top: 8px;
-  position: relative;
-  margin-left: 15px;
-  left: -15px; 
-  transition: color 0.3s ease;
-}
 
-.search-icon:hover {
-  color: #555;
-}

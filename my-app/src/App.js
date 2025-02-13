@@ -17,6 +17,7 @@ import Select from './components/Select'; // Select 컴포넌트 추가
 import SignupFormCon from './components/SignupFormCon';
 import SignupFormCon2 from './components/SignupFormCon2';
 import SignupFormCon3 from './components/SignupFormCon3';
+import logoImage from './logo.png';
 
 function App() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -35,16 +36,15 @@ function App() {
           </div>
         </div>
         <div className="main-header">
-          <Link to="/" className="logo">Logo</Link>
+        <Link to="/" className="logo">
+            <img src={logoImage} alt="사이트 로고" className="logo-image" /> {/* ✅ 로고 이미지 추가 */}
+          </Link>
           <div className="nav-container">
             <ul className="nav">
               <li><Link to="/conferences">학회정보</Link></li>
               <li><Link to="/events">학술행사정보</Link></li>
               <li><Link to="/members">마이페이지</Link></li>
             </ul>
-            <div className="search-icon">
-              <FaSearch />
-            </div>
           </div>
         </div>
       </header>
