@@ -61,4 +61,11 @@ public class EventService {
         );
         eventRepository.save(event);
     }
+
+    public List<String> getExposeImages() {
+        return eventRepository.findTop5ByOrderByEndAtDesc()
+            .stream()
+            .map(Event::getImageUrl)
+            .toList();
+    }
 }

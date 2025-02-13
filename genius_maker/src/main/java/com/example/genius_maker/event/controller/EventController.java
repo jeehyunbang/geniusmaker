@@ -2,6 +2,7 @@ package com.example.genius_maker.event.controller;
 
 import com.example.genius_maker.common.controller.response.ApiResponse;
 import com.example.genius_maker.event.controller.request.SaveEventRequest;
+import com.example.genius_maker.event.controller.response.ExposeEventImageResponseList;
 import com.example.genius_maker.event.controller.response.FindByEventById;
 import com.example.genius_maker.event.controller.response.SearchEventResponseList;
 import com.example.genius_maker.event.service.EventService;
@@ -41,5 +42,14 @@ public class EventController {
     public ApiResponse<Void> saveEvent(@RequestBody SaveEventRequest request) {
         eventService.save(request);
         return ApiResponse.success("행사 정보 등록 성공!");
+    }
+
+    @GetMapping("/expose")
+    public ApiResponse<ExposeEventImageResponseList> getExposeEventImages() {
+        final ExposeEventImageResponseList exposeEventImageResponseList = new ExposeEventImageResponseList(eventService.getExposeImages());
+        return ApiResponse.successWithData(
+            "최신 행사 이미지 조회 완료",
+            exposeEventImageResponseList
+        );
     }
 }

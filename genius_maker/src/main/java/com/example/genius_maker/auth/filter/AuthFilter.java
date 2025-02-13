@@ -24,7 +24,8 @@ public class AuthFilter implements Filter {
         "/api/members/login",
         "/api/s3/upload",
         "/api/events/search",
-        "/api/conference/search"
+        "/api/conference/search",
+        "/api/events/expose"
     );
 
     private final ObjectMapper objectMapper;
