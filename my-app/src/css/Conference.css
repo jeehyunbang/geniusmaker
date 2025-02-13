@@ -1,134 +1,166 @@
 /* 🔹 검색창 전체 컨테이너 */
 .search-section {
-    background-color: #eef0f3; /* 연한 회색 배경 */
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-  }
-  
-  /* 🔹 검색 입력 필드 */
-  .search-bar {
-    display: flex;
-    width: 80%;  /* 가로 길이를 더 크게 조정 */
-    max-width: 800px; /* 최대 길이 설정 */
-    background-color: white;
-    border-radius: 25px;
-    overflow: hidden;
-    border: 1px solid #ccc;
-  }
-  
-  .search-bar input {
-    flex: 1;
-    padding: 14px 20px;
-    border: none;
-    outline: none;
-    font-size: 16px;
-  }
-  
-  .search-bar .search-button {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 12px 18px;
-    font-size: 16px;
-    color: gray;
-  }
-  
-  /* 🔹 필터 그룹 (아래 정렬) */
-  .filter-group {
-    display: flex;
-    gap: 10px;
-    margin-top: 15px; /* 검색창과 간격 조정 */
-  }
-  
-  .filter-group select {
-    padding: 12px;
-    border: none;
-    border-radius: 10px;
-    background-color: white;
-    font-size: 14px;
-    min-width: 120px;
-    display: block;
+  background-color: #eef0f3; /* 연한 회색 배경 */
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
 
-  }
-  
-  /* 🔹 학회 정보 */
-  .conference-section {
-    margin-top: 30px;
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-  }
-  
-  /* 학회 제목 스타일 */
-  .section-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  /* 부제목 스타일 */
-  .subtitle {
-    font-size: 14px;
-    color: gray;
-    margin-bottom: 20px;
-  }
-  
-  /* 🔹 학회 카드 그리드 (4열 정렬) */
-  .conference-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4열 */
-    gap: 20px;
-    margin-top: 10px;
-  }
-  
-  /* 학회 카드 */
-  .conference-card {
-    background-color: #f9f9f9; /* 연한 회색 배경 */
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.2s;
-  }
-  
-  .conference-card:hover {
-    transform: translateY(-5px);
-  }
-  
-  /* 학회 카테고리 태그 */
-  .category {
-    background-color: black;
-    color: white;
-    padding: 4px 8px;
-    border-radius: 5px;
-    font-size: 12px;
-    display: inline-block;
-    margin-bottom: 10px;
-  }
-  
-  /* 학회 로고 */
-  .conference-image {
-    width: 80%;
-    max-width: 100px;
-    margin-bottom: 10px;
-  }
-  
-  /* 학회 제목 */
-  .conference-title {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  /* 학회 위치 & 모드 */
-  .conference-info {
-    font-size: 14px;
-    color: gray;
-  }
-  
+/* 🔹 검색 입력 필드 */
+.search-bar {
+  display: flex;
+  width: 80%;  /* 가로 길이를 더 크게 조정 */
+  max-width: 800px; /* 최대 길이 설정 */
+  background-color: white;
+  border-radius: 25px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 14px 20px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+.search-bar .search-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 12px 18px;
+  font-size: 16px;
+  color: gray;
+}
+
+/* 🔹 필터 그룹 (아래 정렬) */
+.filter-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px; /* 검색창과 간격 조정 */
+}
+
+.filter-group select {
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background-color: white;
+  font-size: 14px;
+  min-width: 120px;
+  display: block;
+
+}
+
+/* 🔹 학회 정보 */
+.event-section {
+  margin-top: 30px;
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* 학회 제목 스타일 */
+.section-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* 부제목 스타일 */
+.subtitle {
+  font-size: 14px;
+  color: gray;
+  margin-bottom: 20px;
+}
+
+/* 🔹 학회 카드 그리드 (4열 정렬) */
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4열 */
+  gap: 20px;
+  margin-top: 10px;
+}
+
+/* 학회 카드 */
+.event-card {
+  background-color: #f9f9f9; /* 연한 회색 배경 */
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+}
+
+/* 학회 카테고리 태그 */
+.category {
+  background-color: black;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 12px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+/* 학회 로고 */
+.event-image {
+  width: 80%;
+  max-width: 100px;
+  margin-bottom: 10px;
+}
+
+/* 학회 제목 */
+.event-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* 학회 위치 & 모드 */
+.event-info {
+  font-size: 14px;
+  color: gray;
+}
+
+/* 페이지 */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  gap: 10px; 
+}
+
+.pagination button {
+  background: none;
+  border: none;
+  font-size: 16px; 
+  color: black;
+  cursor: pointer;
+  transition: font-weight 0.2s, text-decoration 0.2s;
+}
+
+.pagination button:hover {
+  text-decoration: underline;
+}
+
+.pagination button:disabled {
+  cursor: not-allowed;
+  color: #000000;
+}
+
+.pagination .active {
+  font-weight: bold; 
+  text-decoration: underline; 
+  color: black;
+}

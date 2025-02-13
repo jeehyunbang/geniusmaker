@@ -65,7 +65,7 @@
 
 .logo-image {
   margin-left: 40px;
-  margin-top: -20px; /* 위로 올리기 */
+  margin-top: -40px; /* 위로 올리기 */
   width: 250px; /* 원하는 크기로 조정 */
   height: auto; /* 비율 유지 */
 }
@@ -73,21 +73,23 @@
 .nav-container {
   display: flex;
   align-items: center;
-  margin-left: -50px; /* 기존보다 왼쪽으로 조금 이동 */
+  justify-content: center; /* 네비게이션을 중앙 정렬 */
+  max-width: 1000px; /* 네비게이션이 지나치게 넓어지지 않도록 제한 */
+  margin: 0 auto; /* 중앙 정렬 */
+  padding: 0 50px; /* 좌우 여백 추가 */
+  margin-top: -10px; /* 네비게이션 바 전체 위로 이동 */
 }
 
 .nav {
   display: flex;
   list-style: none;
   padding: 0;
-  margin-left: -500px; /* 네비게이션 전체를 왼쪽으로 이동 */
+  margin: 0; /* margin-left 제거하고 중앙 정렬 */
 }
 
 .nav li {
-  margin-right: 45px; /* 메뉴 간 간격 유지 */
+  margin: 0 30px; /* 좌우 여백을 주어 간격 조정 */
 }
-
-
 
 .nav li a {
   text-decoration: none;
