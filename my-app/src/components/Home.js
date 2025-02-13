@@ -93,13 +93,6 @@ function Home() {
           </div>
         ) : (
           <>
-            <p className="login-tooltip">
-              로그인 후 상세정보 조회가 가능해요{" "}
-              <span className="tooltip-icon">💬</span>
-            </p>
-            <button className="login-button" onClick={handleOpenModal}>
-              로그인
-            </button>
           </>
         )}
       </div>
@@ -113,8 +106,8 @@ function Home() {
       <div className="info-section">
         <p className="info-text">
           {user
-            ? `${user.name}님, 이 ${selected}는 어때요?`
-            : `사용자님, 이 ${selected}는 어때요?`}
+            ? `$이 ${selected}는 어때요?`
+            : `이 ${selected}는 어때요?`}
         </p>
         <div className="button-group">
           <button
