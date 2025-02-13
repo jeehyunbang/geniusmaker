@@ -177,5 +177,6 @@ gradle-app.setting
 
 # yml
 resources/application-local.yml
-
+secret.env
+/sh
 # End of https://www.toptal.com/developers/gitignore/api/java,gradle,macos,intellij+all
