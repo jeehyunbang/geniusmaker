@@ -11,6 +11,8 @@ import Member from './components/Member'; // 기존 Member 유지, 새로운 경
 import SignupForm from './components/SignupForm';
 import LoginModal from './components/LoginModal';
 import ConferenceDetail from "./components/ConferenceDetail";
+import EventDetail from "./components/EventDetail"; // ✅ 추가
+
 import Select from './components/Select'; // Select 컴포넌트 추가
 import SignupFormCon from './components/SignupFormCon';
 import SignupFormCon2 from './components/SignupFormCon2';
@@ -54,7 +56,8 @@ function App() {
         <Route path="/conferences" element={<Conference />} />
         <Route path="/conferences/:conferenceId" element={<ConferenceDetail toggleModal={toggleModal} />} />
         <Route path="/events" element={<Event />} />
-        
+        <Route path="/events/:id" element={<EventDetail />} /> {/* ✅ 닫는 태그 추가 */}
+
         {/* 마이페이지에서 ConferenceMem으로 연결 */}
         <Route path="/members" element={<ConferenceMem />} /> 
 
