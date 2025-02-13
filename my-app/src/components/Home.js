@@ -28,7 +28,7 @@ function Home() {
           const response = await fetch("http://43.200.115.60/api/members/my-info", {
             method: "GET",
             headers: {
-              Authorization: `Bearer ${token}`, // JWT 토큰 전달
+              Authorization: `Bearer ${token}`,
             },
           });
           if (response.ok) {
@@ -51,12 +51,14 @@ function Home() {
       try {
         const endpoint =
           selected === "학회정보"
-            ? "http://43.200.115.60/api/conferences"
-            : "http://43.200.115.60/api/events";
+            ? "http://43.200.115.60/api/conference/search"
+            : "http://43.200.115.60/api/events/search";
+
         const response = await fetch(endpoint);
         if (response.ok) {
           const result = await response.json();
-          setData(result.data);
+          const items = selected === "학회정보" ? result.data.conferences : result.data.events;
+          setData(items || []);
         } else {
           console.error("API 호출 실패:", response.statusText);
         }
@@ -69,7 +71,7 @@ function Home() {
   }, [selected]);
 
   const handleCardClick = (id) => {
-    navigate(`/conferences/${id}`);
+    navigate(selected === "학회정보" ? `/conferences/${id}` : `/events/${id}`);
   };
 
   return (
@@ -104,7 +106,7 @@ function Home() {
       <LoginModal
         isOpen={isModalOpen}
         toggleModal={handleCloseModal}
-        setUser={setUser} // 로그인 성공 시 사용자 정보 설정
+        setUser={setUser}
       />
 
       <div className="info-section">
@@ -134,44 +136,32 @@ function Home() {
       </div>
 
       <div className="grid-container">
-        {data.map((item) => (
+        {data.slice(0, 4).map((item) => (
           <div
             key={item.id}
             className="data-box"
             onClick={() => handleCardClick(item.id)}
           >
             <div className="data-top">
-              <span className="data-category">{item.category}</span>
+              <span className="data-category">{item.eventType || item.category}</span>
               <img
-                src={
-                  selected === "학회정보" ? item.thumbnail : item.event_thumbnail
-                }
-                alt={
-                  selected === "학회정보"
-                    ? item.conference_name
-                    : item.event_name
-                }
+                src={item.imageUrl || item.thumbnail}
+                alt={item.name || item.conferenceName}
                 className="data-logo"
               />
             </div>
             <div className="data-bottom">
-              <h3 className="data-title">
-                {selected === "학회정보"
-                  ? item.conference_name
-                  : item.event_name}
-              </h3>
-              <div className="data-info">
-                <p>
-                  <span className="data-icon">📌</span>{" "}
-                  {selected === "학회정보"
-                    ? item.organization_location
-                    : item.location}
-                </p>
-              </div>
+              <h3 className="data-title">{item.name || item.conferenceName}</h3>
+              <p className="data-location">
+                <span className="data-icon">📌</span>{" "}
+                {item.region || item.organizationLocation}
+              </p>
             </div>
           </div>
         ))}
       </div>
+
+
 
       <div className="popular-section">
         <div className="popular-text">
@@ -185,8 +175,6 @@ function Home() {
         </div>
         <div className="popular-box gray-box"></div>
       </div>
-
-s
     </div>
   );
 }
