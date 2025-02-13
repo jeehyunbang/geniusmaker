@@ -92,6 +92,20 @@ const Event = () => {
             <FaSearch />
           </button>
         </div>
+        <div className="filter-group">
+          <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
+            <option value="">📂 분야</option>
+            {categories.map((category, index) => (
+              <option key={index} value={category}>{category}</option>
+            ))}
+          </select>
+          <select value={selectedRegion} onChange={(e) => setSelectedRegion(e.target.value)}>
+            <option value="">📍 지역</option>
+            {regions.map((region, index) => (
+              <option key={index} value={region}>{region}</option>
+            ))}
+          </select>
+        </div>
       </div>
 
       {/* 학회 정보 섹션 */}

@@ -84,7 +84,7 @@ const Conference = () => {
         <div className="search-bar">
           <input
             type="text"
-            placeholder="정보를 입력해주세요"
+            placeholder="키워드를 입력해주세요"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />

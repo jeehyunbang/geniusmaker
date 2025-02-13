@@ -1,55 +1,65 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/SignupFormCon2.css";
+import ConferenceContext from "../context/ConferenceContext";
 
 export default function SignupFormCon2() {
+  const { conferenceData, setConferenceData } = useContext(ConferenceContext);
   const navigate = useNavigate();
 
-  // formData 상태 추가
   const [formData, setFormData] = useState({
-    researchType: "",
-    conferenceAddress: "",
-    joinFee: "",
-    officialUrl: "",
-    socialMediaUrl: "",
+    researchType: conferenceData.researchType || "",
+    conferenceAddress: conferenceData.conferenceAddress || "",
+    joinFee: conferenceData.joinFee || "",
+    officialUrl: conferenceData.officialUrl || "",
+    socialMediaUrl: conferenceData.socialMediaUrl || "",
   });
 
-  // 논문 제출 가능 여부 상태 추가
-  const [discussionSubmit, setDiscussionSubmit] = useState("");
+  const [discussionSubmit, setDiscussionSubmit] = useState(
+    conferenceData.discussionSubmit || ""
+  );
   const [errors, setErrors] = useState({});
 
-  // 입력 변경 핸들러
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData({ ...formData, [name]: value });
   };
 
-  // 유효성 검사 함수
   const validateForm = () => {
     const newErrors = {};
-
     if (!formData.researchType) newErrors.researchType = "연구 분야를 선택해주세요.";
-    if (!formData.conferenceAddress) newErrors.conferenceAddress = "주소를 입력해주세요.";
+    if (!formData.conferenceAddress)
+      newErrors.conferenceAddress = "주소를 입력해주세요.";
     if (!formData.officialUrl) newErrors.officialUrl = "공식 웹사이트를 입력해주세요.";
-
+    
+    // discussionSubmit이 null 또는 undefined일 때만 에러로 처리
+    if (discussionSubmit === null || discussionSubmit === undefined)
+      newErrors.discussionSubmit = "논문 제출 가능 여부를 선택해주세요.";
+  
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
-  };
+    };
+  
 
-  // 다음 페이지 이동
   const handleNext = (e) => {
     e.preventDefault();
+  
+    // "가능"은 true, "불가능"은 false로 변환
+    const booleanDiscussionSubmit = discussionSubmit === "가능";
+  
     if (validateForm()) {
-      navigate("/signup-con3"); // ✅ 정확한 경로로 이동
+      setConferenceData({ 
+        ...conferenceData, 
+        ...formData, 
+        discussionSubmit: booleanDiscussionSubmit 
+      });
+      navigate("/signup-con3");
     } else {
       alert("모든 필수 정보를 입력해주세요!");
     }
   };
+  
 
-  // 이전 페이지 이동
   const handlePrevious = () => {
     navigate("/signup-con");
   };
@@ -71,14 +81,15 @@ export default function SignupFormCon2() {
         <form onSubmit={handleNext}>
           {/* 연구 분야 */}
           <div className="signupformCon2-group">
-            <label><span className="signupformCon2-required">*</span>연구 분야</label>
-            <div className={`signupformCon2-input-group ${errors.researchType ? "error" : ""}`}>
+            <label>
+              <span className="signupformCon2-required">*</span>연구 분야
+            </label>
+            <div className="signupformCon2-input-group">
               <select
                 name="researchType"
                 className="signupformCon2-input-text"
                 value={formData.researchType}
                 onChange={handleChange}
-                required
               >
                 <option value="">연구 분야를 선택해주세요</option>
                 <option value="컴퓨터 공학">컴퓨터 공학</option>
@@ -97,12 +108,17 @@ export default function SignupFormCon2() {
                 <option value="건축학">건축학</option>
               </select>
             </div>
+            {errors.researchType && (
+              <p className="error-message">{errors.researchType}</p>
+            )}
           </div>
 
           {/* 주소 */}
           <div className="signupformCon2-group">
-            <label><span className="signupformCon2-required">*</span>주소</label>
-            <div className={`signupformCon2-input-group ${errors.conferenceAddress ? "error" : ""}`}>
+            <label>
+              <span className="signupformCon2-required">*</span>주소
+            </label>
+            <div className="signupformCon2-input-group">
               <input
                 type="text"
                 name="conferenceAddress"
@@ -110,12 +126,14 @@ export default function SignupFormCon2() {
                 className="signupformCon2-input-text"
                 value={formData.conferenceAddress}
                 onChange={handleChange}
-                required
               />
             </div>
+            {errors.conferenceAddress && (
+              <p className="error-message">{errors.conferenceAddress}</p>
+            )}
           </div>
 
-          {/* 학회 참가비 (선택 사항) */}
+          {/* 학회 참가비 */}
           <div className="signupformCon2-group">
             <label>학회 참가비</label>
             <div className="signupformCon2-input-group">
@@ -134,8 +152,10 @@ export default function SignupFormCon2() {
 
           {/* 공식 웹사이트 */}
           <div className="signupformCon2-group">
-            <label><span className="signupformCon2-required">*</span>공식 웹사이트</label>
-            <div className={`signupformCon2-input-group ${errors.officialUrl ? "error" : ""}`}>
+            <label>
+              <span className="signupformCon2-required">*</span>공식 웹사이트
+            </label>
+            <div className="signupformCon2-input-group">
               <input
                 type="text"
                 name="officialUrl"
@@ -143,12 +163,14 @@ export default function SignupFormCon2() {
                 className="signupformCon2-input-text"
                 value={formData.officialUrl}
                 onChange={handleChange}
-                required
               />
             </div>
+            {errors.officialUrl && (
+              <p className="error-message">{errors.officialUrl}</p>
+            )}
           </div>
 
-          {/* SNS (선택 사항) */}
+          {/* SNS */}
           <div className="signupformCon2-group">
             <label>SNS</label>
             <div className="signupformCon2-input-group">
@@ -165,15 +187,17 @@ export default function SignupFormCon2() {
 
           {/* 논문 제출 가능 여부 */}
           <div className="signupformCon2-group">
-            <label><span className="signupformCon2-required">*</span>논문 제출 가능 여부</label>
+            <label>
+              <span className="signupformCon2-required">*</span>논문 제출 가능 여부
+            </label>
             <div className="signupformCon2-radio-group">
               <label>
                 <input
                   type="radio"
                   name="discussionSubmit"
-                  value="가능"
-                  checked={discussionSubmit === "가능"}
-                  onChange={(e) => setDiscussionSubmit(e.target.value)}
+                  value="true"
+                  checked={discussionSubmit === true}
+                  onChange={() => setDiscussionSubmit(true)} // Boolean 값을 설정
                 />
                 가능
               </label>
@@ -181,18 +205,26 @@ export default function SignupFormCon2() {
                 <input
                   type="radio"
                   name="discussionSubmit"
-                  value="불가능"
-                  checked={discussionSubmit === "불가능"}
-                  onChange={(e) => setDiscussionSubmit(e.target.value)}
+                  value="false"
+                  checked={discussionSubmit === false}
+                  onChange={() => setDiscussionSubmit(false)} // Boolean 값을 설정
                 />
                 불가능
               </label>
             </div>
+            {errors.discussionSubmit && (
+              <p className="error-message">{errors.discussionSubmit}</p>
+            )}
           </div>
+
 
           {/* 버튼 그룹 */}
           <div className="signupformCon2-button-group">
-            <button type="button" className="signupformCon2-previous-button" onClick={handlePrevious}>
+            <button
+              type="button"
+              className="signupformCon2-previous-button"
+              onClick={handlePrevious}
+            >
               이전
             </button>
             <button type="submit" className="signupformCon2-next-button">

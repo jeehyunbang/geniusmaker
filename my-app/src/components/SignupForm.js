@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // React Router에서 페이지 이동을 위한 훅
 import "../css/SignupForm.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
@@ -16,6 +17,8 @@ export default function SignupForm() {
   });
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+
+  const navigate = useNavigate(); // React Router의 useNavigate 훅 사용
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -61,31 +64,29 @@ export default function SignupForm() {
         team: "default",
         interestResearch: formData.interestResearch,
       });
-      
-      const response = await fetch(
-        "/api/members/private-register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: completeEmail,
-            password: formData.password,
-            name: formData.name,
-            team: "default",
-            interestResearch: formData.interestResearch,
-          }),
-        }
-      );
 
-      console.log("API response status:", response.status);
+      const response = await fetch("http://43.200.115.60/api/members/private-register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: completeEmail,
+          password: formData.password,
+          name: formData.name,
+          team: "default",
+          interestResearch: formData.interestResearch,
+        }),
+      });
+
+      // 응답 처리
       const result = await response.json();
-      console.log("API response data:", result);
 
       if (response.ok) {
-        setSuccessMessage("회원가입에 성공했습니다!");
+        console.log("API response data:", result);
+        setSuccessMessage(result.message || "회원가입에 성공했습니다!");
         setErrorMessage("");
+
         // 성공 후 입력 필드 초기화
         setFormData({
           name: "",
@@ -96,14 +97,20 @@ export default function SignupForm() {
         });
         setEmailDomain("naver.com");
         setCustomDomain("");
+
+        // 1초 후 메인 페이지로 이동
+        setTimeout(() => {
+          navigate("/"); // React Router를 사용하는 경우
+        }, 1000);
       } else {
+        console.error("API Error:", result);
         setErrorMessage(result.message || "회원가입에 실패했습니다.");
         setSuccessMessage("");
       }
-    }
-    finally
-    {
-      
+    } catch (error) {
+      console.error("Fetch Error:", error);
+      setErrorMessage("네트워크 오류 또는 서버와의 연결 문제입니다.");
+      setSuccessMessage("");
     }
   };
 
