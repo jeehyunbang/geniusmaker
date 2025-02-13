@@ -20,7 +20,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  margin-right: 20px;
+  margin-right: 25px;
 }
 
 .back-button:hover {
@@ -29,7 +29,7 @@
 
 /* 학술 행사 정보 제목 */
 .event-header h2 {
-  font-size: 25px;
+  font-size: 30px;
   font-weight: bold;
   color: #222;
 }
@@ -61,22 +61,22 @@
 }
 
 .event-name {
-  font-size: 26px;
+  font-size: 30px;
   font-weight: bold;
   color: #222;
   margin-bottom: 10px;
 }
 
 .event-description {
-  font-size: 16px;
-  color: #555;
+  font-size: 20px;
+  color: #373636;
   margin-bottom: 20px;
   line-height: 1.5;
 }
 
 /* 정보 섹션 헤더 */
 .info-header {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: bold;
   margin-top: 20px;
   border-bottom: 2px solid #ddd;
@@ -87,8 +87,8 @@
 .event-details {
   list-style: none;
   padding: 0;
-  font-size: 16px;
-  color: #444;
+  font-size: 19px;
+  color: #1f1f1f;
 }
 
 .event-details li {
@@ -129,7 +129,7 @@
   color: white;
   border: none;
   border-radius: 6px;
-  font-size: 18px;
+  font-size: 20px;
   cursor: pointer;
   font-weight: bold;
   text-align: center;

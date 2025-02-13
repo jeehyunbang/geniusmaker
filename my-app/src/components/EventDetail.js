@@ -8,24 +8,25 @@ const EventDetail = () => {
   const navigate = useNavigate();
 
   // ✅ 로그인 상태 (테스트용)
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false); // ✅ 모달 상태 추가
 
   console.log("isLoggedIn 상태:", isLoggedIn);
 
   const eventData = {
     id: 1,
-    conference_name: "AI Technology Conference 2025",
-    conference_established_date: "2025년 6월 15일",
-    email: "ai_conference2025@example.com",
-    category: "Technology",
-    organization_location: "Seoul, South Korea",
-    thumbnail: "https://example.com/event1_thumbnail.jpg",
-    paper_submission_available: "불가능",
-    conference_fee: "50,000원",
-    conference_description: "A conference to share the latest technologies in AI and machine learning.",
-    official_website: "https://example.com",
-    social_media_link: "https://example.com/join"
+    name: "후라이드 치킨 시연회",
+    imageUrl: "https://rootimpact4.s3.ap-northeast-2.amazonaws.com/images/38a7ec7d-e5ff-406e-a94f-8ae7972c3f79.png",
+    organizer: "후라이드 학회",
+    eventType: "치킨 연구",
+    region: "부산",
+    eventStartAt: "2025년 02월 10일",
+    eventEndAt: "2025년 02월 17일",
+    fee: "100,000원",
+    officalUrl: "https://chikcen.site",
+    joinUrl: "https://join.com",
+    description: "후라이드 치킨 냠냠",
+    offline: true
   };
 
   // ✅ 로그인 모달 열기
@@ -62,38 +63,38 @@ const EventDetail = () => {
       <div className="event-content">
         {/* 🔹 왼쪽 썸네일 (포스터) */}
         <div className={`thumbnail-container ${!isLoggedIn ? "blurred" : ""}`}>
-          <img src={eventData.thumbnail} alt={`${eventData.conference_name} 포스터`} />
+          <img src={eventData.imageUrl} alt={`${eventData.name} 포스터`} />
         </div>
 
         {/* 🔹 오른쪽 학술 행사 정보 */}
         <div className="event-info">
           {/* 학술 행사 정보 (로그인하지 않으면 블러 처리) */}
           <div className={`event-details-container ${!isLoggedIn ? "blurred" : ""}`}>
-            <h3 className="event-name">{eventData.conference_name}</h3>
-            <p className="event-description">{eventData.conference_description}</p>
+            <h3 className="event-name">{eventData.name}</h3>
+            <p className="event-description">{eventData.description}</p>
 
             <div className="info-header">행사 기본 정보</div>
             <ul className="event-details">
-              <li><strong>개최기관:</strong> {eventData.conference_name}</li>
-              <li><strong>분야:</strong> {eventData.category}</li>
-              <li><strong>지역:</strong> {eventData.organization_location}</li>
-              <li><strong>날짜:</strong> {eventData.conference_established_date}</li>
-              <li><strong>논문 제출 가능 여부:</strong> {eventData.paper_submission_available}</li>
-              <li><strong>참가비:</strong> {eventData.conference_fee}</li>
+              <li><strong>개최기관:</strong> {eventData.organizer}</li>
+              <li><strong>분야:</strong> {eventData.eventType}</li>
+              <li><strong>지역:</strong> {eventData.region}</li>
+              <li><strong>기간:</strong> {eventData.eventStartAt} ~ {eventData.eventEndAt}</li>
+              <li><strong>오프라인 여부:</strong> {eventData.offline ? "오프라인" : "온라인"}</li>
+              <li><strong>참가비:</strong> {eventData.fee}</li>
             </ul>
 
             <div className="info-header">참가 및 신청</div>
             <ul className="event-details">
               <li>
                 <strong>공식 웹사이트:</strong>
-                <a href={eventData.official_website} target="_blank" rel="noopener noreferrer">
-                  {eventData.conference_name}
+                <a href={eventData.officalUrl} target="_blank" rel="noopener noreferrer">
+                  {eventData.officalUrl}
                 </a>
               </li>
               <li>
                 <strong>신청 사이트:</strong>
-                <a href={eventData.social_media_link} target="_blank" rel="noopener noreferrer">
-                  {eventData.conference_name}
+                <a href={eventData.joinUrl} target="_blank" rel="noopener noreferrer">
+                  참가 신청
                 </a>
               </li>
             </ul>
