@@ -56,6 +56,9 @@ public class ConferenceMemberInfo {
     @Column(name = "social_media_url", length = 500, nullable = false)
     private String socialMediaUrl;
 
+    @Column(name = "personal_value", length = 200, nullable = false)
+    private String personalValue;
+
     public ConferenceMemberInfo(
         final String name,
         final LocalDateTime foundedAt,
@@ -69,7 +72,8 @@ public class ConferenceMemberInfo {
         final int joinFee,
         final String description,
         final String officialUrl,
-        final String socialMediaUrl
+        final String socialMediaUrl,
+        final String personalValue
     ) {
         this(
             null,
@@ -85,7 +89,8 @@ public class ConferenceMemberInfo {
             joinFee,
             description,
             officialUrl,
-            socialMediaUrl
+            socialMediaUrl,
+            personalValue
         );
     }
 
@@ -103,7 +108,8 @@ public class ConferenceMemberInfo {
         final int joinFee,
         final String description,
         final String officialUrl,
-        final String socialMediaUrl
+        final String socialMediaUrl,
+        final String personalValue
     ) {
         this.id = id;
         this.name = name;
@@ -119,5 +125,6 @@ public class ConferenceMemberInfo {
         this.description = description;
         this.officialUrl = officialUrl;
         this.socialMediaUrl = socialMediaUrl;
+        this.personalValue = personalValue;
     }
 }

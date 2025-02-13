@@ -9,4 +9,6 @@ import java.util.Optional;
 public interface ConferenceMemberInfoRepository extends JpaRepository<ConferenceMemberInfo, Long>, JpaSpecificationExecutor<ConferenceMemberInfo> {
 
     Optional<ConferenceMemberInfo> findByEmail(String email);
+
+    Optional<ConferenceMemberInfo> findByPersonalValue(String personalValue);
 }

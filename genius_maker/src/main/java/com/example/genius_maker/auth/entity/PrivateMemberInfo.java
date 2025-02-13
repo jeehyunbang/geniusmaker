@@ -30,12 +30,16 @@ public class PrivateMemberInfo {
     @Column(name = "interest_research", length = 100, nullable = true)
     private String interestResearch;
 
+    @Column(name = "personal_value", length = 200, nullable = false)
+    private String personalValue;
+
     public PrivateMemberInfo(
         final String email,
         final String password,
         final String name,
         final String team,
-        final String interestResearch
+        final String interestResearch,
+        final String personalValue
     ) {
         this(
             null,
@@ -43,7 +47,8 @@ public class PrivateMemberInfo {
             password,
             name,
             team,
-            interestResearch
+            interestResearch,
+            personalValue
         );
     }
 
@@ -53,7 +58,8 @@ public class PrivateMemberInfo {
         final String password,
         final String name,
         final String team,
-        final String interestResearch
+        final String interestResearch,
+        final String personalValue
     ) {
         this.id = id;
         this.email = email;
@@ -61,5 +67,6 @@ public class PrivateMemberInfo {
         this.name = name;
         this.team = team;
         this.interestResearch = interestResearch;
+        this.personalValue = personalValue;
     }
 }

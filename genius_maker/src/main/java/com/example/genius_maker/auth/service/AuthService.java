@@ -2,6 +2,7 @@ package com.example.genius_maker.auth.service;
 
 import com.example.genius_maker.auth.controller.request.SaveConferenceMemberInfoRequest;
 import com.example.genius_maker.auth.controller.request.SavePrivateMemberInfoRequest;
+import com.example.genius_maker.auth.controller.response.MemberInfoResponse;
 import com.example.genius_maker.auth.entity.ConferenceMemberInfo;
 import com.example.genius_maker.auth.entity.PrivateMemberInfo;
 import com.example.genius_maker.auth.repository.ConferenceMemberInfoRepository;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -25,19 +27,21 @@ public class AuthService {
 
     @Transactional
     public void savePrivateMemberInfo(final SavePrivateMemberInfoRequest request) {
+        final String personalValue = UUID.randomUUID().toString();
         final PrivateMemberInfo privateMemberInfo = new PrivateMemberInfo(
             request.email(),
             passwordEncoder.encrypt(request.password()),
             request.name(),
             request.team(),
-            request.interestResearch()
+            request.interestResearch(),
+            personalValue
         );
         privateMemberInfoRepository.save(privateMemberInfo);
-        // TODO : 이메일 인증 메일 전송
     }
 
     @Transactional
     public void saveConferenceMemberInfo(final SaveConferenceMemberInfoRequest request) {
+        final String personalValue = UUID.randomUUID().toString();
         final ConferenceMemberInfo conferenceMemberInfo = new ConferenceMemberInfo(
             request.name(),
             request.foundedAt(),
@@ -51,10 +55,10 @@ public class AuthService {
             request.joinFee(),
             request.description(),
             request.officialUrl(),
-            request.socialMediaUrl()
+            request.socialMediaUrl(),
+            personalValue
         );
         conferenceMemberInfoRepository.save(conferenceMemberInfo);
-        // TODO : 이메일 인증 메일 전송
     }
 
     public String login(final String email, final String password) {
@@ -64,11 +68,11 @@ public class AuthService {
         if (privateMemberInfo.isPresent()) {
             final PrivateMemberInfo member = privateMemberInfo.get();
             checkPassword(password, member.getPassword());
-            return jwtHandler.generateToken(member.getId());
+            return jwtHandler.generateToken(member.getPersonalValue());
         } else if (conferenceMemberInfo.isPresent()) {
             final ConferenceMemberInfo member = conferenceMemberInfo.get();
             checkPassword(password, member.getPassword());
-            return jwtHandler.generateToken(member.getId());
+            return jwtHandler.generateToken(member.getPersonalValue());
         }
 
         throw new EntityNotFoundException("이메일에 일치하는 회원 데이터가 존재하지 않습니다.");
@@ -80,14 +84,22 @@ public class AuthService {
         }
     }
 
-    public void deleteMember(final Long memberId) {
-        final Optional<PrivateMemberInfo> privateMemberInfo = privateMemberInfoRepository.findById(memberId);
-        final Optional<ConferenceMemberInfo> conferenceMemberInfo = conferenceMemberInfoRepository.findById(memberId);
+    public MemberInfoResponse getMemberInfo(final String personalValue) {
+        final Optional<PrivateMemberInfo> privateMemberInfo = privateMemberInfoRepository.findByPersonalValue(personalValue);
+        final Optional<ConferenceMemberInfo> conferenceMemberInfo = conferenceMemberInfoRepository.findByPersonalValue(personalValue);
 
         if (privateMemberInfo.isPresent()) {
-            privateMemberInfoRepository.delete(privateMemberInfo.get());
-        } else conferenceMemberInfo.ifPresent(conferenceMemberInfoRepository::delete);
+            return new MemberInfoResponse(
+                privateMemberInfo.get().getName(),
+                privateMemberInfo.get().getEmail()
+            );
+        } else if (conferenceMemberInfo.isPresent()) {
+            return new MemberInfoResponse(
+                conferenceMemberInfo.get().getName(),
+                conferenceMemberInfo.get().getEmail()
+            );
+        }
 
-        throw new EntityNotFoundException("아이디에 일치하는 회원 데이터가 존재하지 않습니다.");
+        throw new EntityNotFoundException("회원 정보가 존재하지 않습니다.");
     }
 }

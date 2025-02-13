@@ -4,7 +4,8 @@ import com.example.genius_maker.auth.controller.request.LoginRequest;
 import com.example.genius_maker.auth.controller.request.SaveConferenceMemberInfoRequest;
 import com.example.genius_maker.auth.controller.request.SavePrivateMemberInfoRequest;
 import com.example.genius_maker.auth.controller.response.LoginResponse;
-import com.example.genius_maker.auth.resolver.AuthenticatedMemberId;
+import com.example.genius_maker.auth.controller.response.MemberInfoResponse;
+import com.example.genius_maker.auth.resolver.AuthenticatedMemberPersonalValue;
 import com.example.genius_maker.auth.service.AuthService;
 import com.example.genius_maker.common.controller.response.ApiResponse;
 import lombok.RequiredArgsConstructor;
@@ -44,11 +45,14 @@ public class AuthController {
         );
     }
 
-    @DeleteMapping("/withdraw")
-    public ApiResponse<Void> withdraw(
-        @AuthenticatedMemberId final Long memberId
+    @GetMapping("/my-info")
+    public ApiResponse<MemberInfoResponse> getMemberInfo(
+        @AuthenticatedMemberPersonalValue String personalValue
     ) {
-        authService.deleteMember(memberId);
-        return ApiResponse.success("회원 탈퇴 성공!");
+        final MemberInfoResponse memberInfo = authService.getMemberInfo(personalValue);
+        return ApiResponse.successWithData(
+            "회원 정보 조회 성공!",
+            memberInfo
+        );
     }
 }

@@ -17,7 +17,7 @@ public class AuthenticatedMemberIdArgumentResolver implements HandlerMethodArgum
 
     @Override
     public boolean supportsParameter(final MethodParameter parameter) {
-        return parameter.hasParameterAnnotation(AuthenticatedMemberId.class);
+        return parameter.hasParameterAnnotation(AuthenticatedMemberPersonalValue.class);
     }
 
     @Override
@@ -28,6 +28,6 @@ public class AuthenticatedMemberIdArgumentResolver implements HandlerMethodArgum
         final WebDataBinderFactory binderFactory
     ) throws Exception {
         final String bearerToken = webRequest.getHeader("Authorization");
-        return jwtHandler.getMemberId(bearerToken);
+        return jwtHandler.getPersonalValue(bearerToken);
     }
 }

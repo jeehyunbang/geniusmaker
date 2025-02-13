@@ -20,9 +20,9 @@ public class JwtHandler {
     @Value("${secret.jwt.expire-time}")
     private Long expireTime;
 
-    public String generateToken(final Long memberId) {
+    public String generateToken(final String personalValue) {
         return Jwts.builder()
-            .claim("member_id", memberId)
+            .claim("member_id", personalValue)
             .expiration(parseCurrnetDate())
             .signWith(Keys.hmacShaKeyFor(secret.getBytes()))
             .compact();
@@ -55,10 +55,10 @@ public class JwtHandler {
         return bearerToken;
     }
 
-    public Long getMemberId(final String bearerToken) {
+    public String getPersonalValue(final String bearerToken) {
         String token = extract(bearerToken);
         final Claims claims = parseClaims(token);
-        return claims.get("member_id", Long.class);
+        return claims.get("member_id", String.class);
     }
 
     private Claims parseClaims(String token) {
