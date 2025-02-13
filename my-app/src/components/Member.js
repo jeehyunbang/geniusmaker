@@ -27,12 +27,13 @@ const Member = () => {
 
           {/* 회원 상세 정보 */}
           <div className="user-details">
-            <div className="info-row">
-              <span className="label">닉네임</span>
-              <span className="info-box">{user.nickname}</span>
-              <span className="label">회원분류</span>
-              <span className="info-box">{user.membership}</span>
-            </div>
+          <div className="info-row">
+            <span className="label">닉네임</span>
+              <span className="info-box nickname-box">{user.nickname}</span> {/* 추가된 클래스 */}
+                <span className="label">회원분류</span>
+                <span className="info-box">{user.membership}</span>
+          </div>
+
             <div className="info-row">
               <span className="label">이메일</span>
               <span className="info-box">{user.email}</span>

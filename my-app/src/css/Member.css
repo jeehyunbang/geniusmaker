@@ -17,9 +17,25 @@
   justify-content: flex-start; /* 왼쪽 정렬 */
   align-items: center;
   text-align: left;
-  font-size: 30px;
+  font-size: 25px;
   padding-left: 30px;
   font-weight: bold;
+}
+/* 회원정보 제목 스타일 */
+.info-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 좌측 제목, 우측 버튼 */
+  width: 100%;
+  padding-bottom: 15px;
+}
+
+/* 회원정보 제목 글자 크기, 굵기 조정 */
+.info-header h2 {
+  font-size: 28px;  /* 글자 크기 */
+  font-weight: bold; /* 글자 굵기 */
+  color: #333; /* 글자 색상 */
+  margin-left: -40px;
 }
 
 /* 회원정보 카드 스타일 */
@@ -83,15 +99,15 @@
 .info-row {
   display: flex;
   align-items: center;
-  gap: 5px; /* 기본적으로 작은 간격 유지 */
+  gap: 50px; /* 닉네임과 회원분류 간격을 늘림 */
   margin-bottom: 5px;
   margin-left: 5px;
   margin-top: 5px;
 }
 
-/* 닉네임과 회원분류 사이 간격 늘리기 */
+/* 닉네임과 회원분류 값 사이에 추가 간격 */
 .nickname-box {
-  margin-right: 50px; /* 닉네임 값과 회원분류 값 사이 간격 추가 */
+  margin-right: 350px; /* 닉네임 값과 회원분류 값 사이 간격 추가 */
 }
 
 /* 라벨 스타일 */
@@ -114,6 +130,7 @@
   overflow: hidden;
   text-overflow: ellipsis; /* 너무 길면 ... 표시 */
 }
+
 
 /* 정보 수정 버튼 */
 .edit-button {
