@@ -25,20 +25,6 @@ const LoginModal = ({ isOpen, toggleModal }) => {
           </div>
           <button type="submit" className="custom-login-button">로그인</button>
         </form>
-        <div className="custom-extra-links">
-          <a href="/signup" className="custom-left-link">회원가입</a>
-          <div className="custom-right-links">
-            <a href="#find-password">비밀번호 찾기</a>
-          </div>
-        </div>
-        <div className="custom-social-login">
-          <p className="custom-social-title">소셜 로그인</p>
-          <div className="custom-social-icons">
-            <div className="custom-social-icon">카카오톡</div>
-            <div className="custom-social-icon">네이버</div>
-            <div className="custom-social-icon">구글</div>
-          </div>
-        </div>
       </div>
     </div>
   );

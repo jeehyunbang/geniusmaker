@@ -3,11 +3,11 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    width: 80%;
+    width: 55%;
     margin: 0 auto;
 }
 /* 🔹 검색 입력 필드 */
-.search-bar {
+  .search-bar {
     display: flex;
     width: 80%;  /* 가로 길이를 더 크게 조정 */
     max-width: 800px; /* 최대 길이 설정 */

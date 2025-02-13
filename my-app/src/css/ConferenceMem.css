@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 80%;
 }
 
 /* 로그인 섹션 (학술 행사 등록) */
