@@ -8,7 +8,7 @@ const ConferenceMem = () => {
     field: "사회문화",
     members: "1,234 명",
     papers: "34 권",
-    fee: "",
+    fee: "1000",
     openAccess: "무료",
   };
 

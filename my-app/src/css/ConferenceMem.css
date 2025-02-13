@@ -30,7 +30,7 @@
 }
 
 .login-button {
-  padding: 10px 20px;
+  padding: 10px 30px;
   background-color: #007bff;
   color: white;
   border: none;
@@ -38,10 +38,12 @@
   cursor: pointer;
   font-size: 14px;
   transition: background-color 0.3s ease;
-  width: auto;
-  max-width: 150px;
+  width: 200px;  /* 버튼 크기 조정 */
   text-align: center;
+  min-width: 180px; /* 최소 가로 크기 설정 */
 }
+
+
 
 .login-button:hover {
   background-color: #0056b3;
@@ -112,6 +114,7 @@
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 5px;
+  color: black;
 }
 
 /* 정보 행 스타일 */
@@ -127,11 +130,13 @@
   font-weight: bold;
   width: 130px;
   text-align: left;
+  color: black;
 }
 
 /* 정보 박스 */
 .info-box {
   background-color: white;
+  color: black;
   padding: 6px 12px;
   border-radius: 10px;
   font-size: 14px;
@@ -153,5 +158,5 @@
 }
 
 .delete-button:hover {
-  background-color: #bbb;
+  background-color: #164cff;
 }
