@@ -3,9 +3,10 @@ import { Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 import { FaSearch } from 'react-icons/fa';
 import Conference from './components/Conference';
+import ConferenceMem from './components/ConferenceMem'; // ConferenceMem 추가
 import Event from './components/Event';
 import Home from './components/Home';
-import Member from './components/Member';
+import Member from './components/Member'; // 기존 Member 유지, 새로운 경로로 이동
 import SignupForm from './components/SignupForm';
 import LoginModal from './components/LoginModal';
 import ConferenceDetail from "./components/ConferenceDetail";
@@ -51,7 +52,13 @@ function App() {
         <Route path="/conferences" element={<Conference />} />
         <Route path="/conferences/:conferenceId" element={<ConferenceDetail toggleModal={toggleModal} />} />
         <Route path="/events" element={<Event />} />
-        <Route path="/members" element={<Member />} />
+        
+        {/* 마이페이지에서 ConferenceMem으로 연결 */}
+        <Route path="/members" element={<ConferenceMem />} /> 
+
+        {/* 기존 Member.js가 필요하면 새로운 경로로 이동 */}
+        <Route path="/members/info" element={<Member />} />
+
         <Route path="/select" element={<Select />} /> {/* Select 컴포넌트 라우트 추가 */}
         <Route path="/signup" element={<SignupForm />} />
         <Route path="/signup-con" element={<SignupFormCon/>} />
