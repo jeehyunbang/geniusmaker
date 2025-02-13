@@ -7,7 +7,6 @@ const conferences = Array(12).fill({
   category: "디자인",
   title: "한국디자인학회",
   location: "성남시",
-  mode: "오프라인",
   image: "/images/conference-logo.png",
 });
 

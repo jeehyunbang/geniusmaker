@@ -89,14 +89,14 @@
   font-weight: bold;
 }
 
-.signupform-icon {
+.icon {
   position: absolute;
   right: 10px; /* 입력 필드 가장 오른쪽 */
   color: #888;
   cursor: pointer;
 }
 
-.signupform-helper-text {
+.helper-text {
   font-size: 12px;
   color: #007bff;
   margin-top: 5px;

@@ -11,7 +11,7 @@ const ConferenceCard = ({ id, category, title, location, mode, image }) => {
       <img src={image} alt={title} className="conference-image" />
       <h3 className="conference-title">{title}</h3>
       <p className="conference-info">
-        📍 {location} &nbsp; 👥 {mode}
+        📍 {location} &nbsp;
       </p>
     </div>
   );
