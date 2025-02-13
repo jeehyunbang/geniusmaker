@@ -1,38 +1,64 @@
-import React, { useState, useEffect } from 'react';
-import '../css/Home.css';
-import LoginModal from './LoginModal';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import "../css/Home.css";
+import LoginModal from "./LoginModal";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
   const navigate = useNavigate();
-  const user = { nickname: '린' };
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [search, setSearch] = useState("");
-  const [selected, setSelected] = useState('학회정보');
+  const [selected, setSelected] = useState("학회정보");
   const [data, setData] = useState([]);
+  const [user, setUser] = useState(null); // 사용자 상태 관리
 
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
-  const handleRegisterClick = () => {
-    setIsModalOpen(true);  // 로그인 모달 열기
+
+  const handleLogout = () => {
+    localStorage.removeItem("loginToken"); // JWT 토큰 삭제
+    setUser(null); // 사용자 상태 초기화
   };
-  
-  
-  // API 호출
+
+  useEffect(() => {
+    // JWT 토큰으로 사용자 정보 조회
+    const token = localStorage.getItem("loginToken");
+    if (token) {
+      const fetchUserInfo = async () => {
+        try {
+          const response = await fetch("http://43.200.115.60/api/members/my-info", {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`, // JWT 토큰 전달
+            },
+          });
+          if (response.ok) {
+            const result = await response.json();
+            setUser(result.data); // 사용자 정보 설정
+          } else {
+            console.error("사용자 정보 조회 실패:", response.statusText);
+          }
+        } catch (error) {
+          console.error("사용자 정보 조회 중 오류 발생:", error);
+        }
+      };
+
+      fetchUserInfo();
+    }
+  }, []);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const endpoint =
           selected === "학회정보"
-            ? "http://localhost:3000/api/conferences" // 학회 정보 API
-            : "http://localhost:3000/api/events"; // 행사 정보 API
+            ? "http://43.200.115.60/api/conferences"
+            : "http://43.200.115.60/api/events";
         const response = await fetch(endpoint);
-        const result = await response.json();
-
         if (response.ok) {
-          setData(result.data); // API 응답 데이터 설정
+          const result = await response.json();
+          setData(result.data);
         } else {
-          console.error("API 호출 실패:", result.message);
+          console.error("API 호출 실패:", response.statusText);
         }
       } catch (error) {
         console.error("API 호출 중 오류 발생:", error);
@@ -40,7 +66,7 @@ function Home() {
     };
 
     fetchData();
-  }, [selected]); // selected가 변경될 때마다 API 호출
+  }, [selected]);
 
   const handleCardClick = (id) => {
     navigate(`/conferences/${id}`);
@@ -48,46 +74,65 @@ function Home() {
 
   return (
     <div className="home-content">
-      {/* 상단 배경 박스 */}
       <div className="top-container">
         <div className="gray-box L"></div>
       </div>
 
       <div className="login-section">
-        <p className="login-tooltip">
-          로그인 후 상세정보 조회가 가능해요 <span className="tooltip-icon">💬</span>
-        </p>
-        <button className="login-button" onClick={handleRegisterClick}>
-          로그인
-        </button>
+        {user ? (
+          <div className="welcome-message">
+            <p>
+              안녕하세요, <span className="highlight">{user.name}</span>님! ({user.email})
+            </p>
+            <button className="logout-button" onClick={handleLogout}>
+              로그아웃
+            </button>
+          </div>
+        ) : (
+          <>
+            <p className="login-tooltip">
+              로그인 후 상세정보 조회가 가능해요{" "}
+              <span className="tooltip-icon">💬</span>
+            </p>
+            <button className="login-button" onClick={handleOpenModal}>
+              로그인
+            </button>
+          </>
+        )}
       </div>
 
+      <LoginModal
+        isOpen={isModalOpen}
+        toggleModal={handleCloseModal}
+        setUser={setUser} // 로그인 성공 시 사용자 정보 설정
+      />
 
-      {/* 로그인 모달 */}
-      <LoginModal isOpen={isModalOpen} toggleModal={handleCloseModal} />
-
-      {/* 글귀와 버튼 */}
       <div className="info-section">
         <p className="info-text">
-          사용자님, 이 <span className="highlight">{selected}</span>는 어때요?
+          {user
+            ? `${user.name}님, 이 ${selected}는 어때요?`
+            : `사용자님, 이 ${selected}는 어때요?`}
         </p>
         <div className="button-group">
           <button
-            className={`conference-button ${selected === '학회정보' ? 'active' : ''}`}
-            onClick={() => setSelected('학회정보')}
+            className={`conference-button ${
+              selected === "학회정보" ? "active" : ""
+            }`}
+            onClick={() => setSelected("학회정보")}
           >
             학회정보
           </button>
           <button
-            className={`event-button ${selected === '학술행사' ? 'active' : ''}`}
-            onClick={() => setSelected('학술행사')}
+            className={`event-button ${
+              selected === "학술행사" ? "active" : ""
+            }`}
+            onClick={() => setSelected("학술행사")}
           >
             학술행사
           </button>
         </div>
       </div>
 
-      {/* 여러 개의 학회/학술 행사 정보 표시*/}
       <div className="grid-container">
         {data.map((item) => (
           <div
@@ -99,9 +144,7 @@ function Home() {
               <span className="data-category">{item.category}</span>
               <img
                 src={
-                  selected === "학회정보"
-                    ? item.thumbnail
-                    : item.event_thumbnail
+                  selected === "학회정보" ? item.thumbnail : item.event_thumbnail
                 }
                 alt={
                   selected === "학회정보"
@@ -130,22 +173,20 @@ function Home() {
         ))}
       </div>
 
-      {/* 오늘의 인기 학회&학술행사 섹션 */}
       <div className="popular-section">
         <div className="popular-text">
-          <h3>오늘의 인기<br />학회&학술행사<br />정보예요 👀</h3>
-          <button className="more-button">더보러가기 &gt;</button>
+          <h3>
+            오늘의 인기
+            <br />
+            학회&학술행사
+            <br />
+            정보예요 👀
+          </h3>
         </div>
         <div className="popular-box gray-box"></div>
       </div>
 
-      {/* 프로모션 박스 */}
-      <div className="promotion-section">
-        <div className="promotion-box gray-box">
-          <p className="promotion-text">프로모션</p>
-        </div>
-        <div className="promotion-box gray-box"></div>
-      </div>
+s
     </div>
   );
 }

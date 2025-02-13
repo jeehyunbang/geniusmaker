@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaEye, FaEyeSlash } from "react-icons/fa"; 
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "../css/SignupFormCon.css";
+import ConferenceContext from "../context/ConferenceContext";
 
 export default function SignupFormCon() {
+  const { conferenceData, setConferenceData } = useContext(ConferenceContext);
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    name: "",
-    organization: "",
-    manager: "",
-    email: "",
-    password: "",
+    name: conferenceData.name || "",
+    foundedAt: conferenceData.foundedAt || "",
+    manager: conferenceData.manager || "",
+    email: conferenceData.email || "",
+    password: conferenceData.password || "",
   });
 
   const [emailDomain, setEmailDomain] = useState("custom");
@@ -22,7 +24,7 @@ export default function SignupFormCon() {
   const handleDomainChange = (e) => {
     setEmailDomain(e.target.value);
     if (e.target.value !== "custom") {
-      setCustomDomain(""); // 직접 입력 필드 초기화
+      setCustomDomain(""); // 초기화
     }
   };
 
@@ -41,7 +43,7 @@ export default function SignupFormCon() {
   const validateForm = () => {
     const newErrors = {};
     if (!formData.name) newErrors.name = "학회명을 입력해주세요.";
-    if (!formData.organization) newErrors.organization = "소속기관을 입력해주세요.";
+    if (!formData.foundedAt) newErrors.foundedAt = "설립일을 입력해주세요.";
     if (!formData.manager) newErrors.manager = "담당자 성함을 입력해주세요.";
     if (!formData.email) newErrors.email = "이메일을 입력해주세요.";
     if (!formData.password) newErrors.password = "비밀번호를 입력해주세요.";
@@ -50,9 +52,20 @@ export default function SignupFormCon() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleNext = (e) => {
     e.preventDefault();
     if (validateForm()) {
+      const completeEmail =
+        emailDomain === "custom"
+          ? `${formData.email}@${customDomain}`
+          : `${formData.email}@${emailDomain}`;
+
+      const updatedData = {
+        ...formData,
+        email: completeEmail,
+      };
+
+      setConferenceData({ ...conferenceData, ...updatedData });
       navigate("/signup-con2");
     } else {
       alert("모든 필수 정보를 입력해주세요!");
@@ -73,10 +86,12 @@ export default function SignupFormCon() {
       </div>
 
       <div className="signupformCon-right">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleNext}>
           {/* 학회명 */}
           <div className="signupformCon-group">
-            <label><span className="signupformCon-required">*</span>학회명</label>
+            <label>
+              <span className="signupformCon-required">*</span>학회명
+            </label>
             <div className={`signupformCon-input-group ${errors.name ? "error" : ""}`}>
               <input
                 type="text"
@@ -90,25 +105,28 @@ export default function SignupFormCon() {
             {errors.name && <p className="error-message">{errors.name}</p>}
           </div>
 
-          {/* 소속기관 */}
+          {/* 설립일 */}
           <div className="signupformCon-group">
-            <label><span className="signupformCon-required">*</span>소속기관</label>
-            <div className={`signupformCon-input-group ${errors.organization ? "error" : ""}`}>
+            <label>
+              <span className="signupformCon-required">*</span>설립일
+            </label>
+            <div className={`signupformCon-input-group ${errors.foundedAt ? "error" : ""}`}>
               <input
-                type="text"
-                name="organization"
-                placeholder="소속기관을 입력해주세요"
+                type="date"
+                name="foundedAt"
                 className="signupformCon-input-text"
-                value={formData.organization}
+                value={formData.foundedAt}
                 onChange={handleChange}
               />
             </div>
-            {errors.organization && <p className="error-message">{errors.organization}</p>}
+            {errors.foundedAt && <p className="error-message">{errors.foundedAt}</p>}
           </div>
 
           {/* 담당자 */}
           <div className="signupformCon-group">
-            <label><span className="signupformCon-required">*</span>담당자 성함</label>
+            <label>
+              <span className="signupformCon-required">*</span>담당자 성함
+            </label>
             <div className={`signupformCon-input-group ${errors.manager ? "error" : ""}`}>
               <input
                 type="text"
@@ -124,7 +142,9 @@ export default function SignupFormCon() {
 
           {/* 이메일 */}
           <div className="signupformCon-group">
-            <label><span className="signupformCon-required">*</span>이메일</label>
+            <label>
+              <span className="signupformCon-required">*</span>이메일
+            </label>
             <div className={`signupformCon-input-group ${errors.email ? "error" : ""}`}>
               <input
                 type="text"
@@ -145,7 +165,7 @@ export default function SignupFormCon() {
                 <option value="daum.net">daum.net</option>
                 <option value="custom">직접 입력</option>
               </select>
-              {emailDomain === "" && (
+              {emailDomain === "custom" && (
                 <input
                   type="text"
                   placeholder="도메인을 입력해주세요"
@@ -160,7 +180,9 @@ export default function SignupFormCon() {
 
           {/* 비밀번호 */}
           <div className="signupformCon-group">
-            <label><span className="signupformCon-required">*</span>비밀번호</label>
+            <label>
+              <span className="signupformCon-required">*</span>비밀번호
+            </label>
             <div className={`signupformCon-input-group ${errors.password ? "error" : ""}`}>
               <input
                 type={passwordVisible ? "text" : "password"}
