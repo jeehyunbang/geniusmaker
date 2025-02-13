@@ -62,9 +62,9 @@ export default function SignupFormCon() {
             </label>
             <div className="signupformCon-input-group">
               <select className="signupformCon-domain-select">
-                <option value="사회분야">사회분야</option>
-                <option value="예술분야">예술분야</option>
-                <option value="과학분야">과학분야</option>
+                <option value="공학">공학학</option>
+                <option value="예술">예술</option>
+                <option value="과학">과학</option>
                 <option value="기타">기타</option>
               </select>
             </div>

@@ -65,6 +65,7 @@ function App() {
         <Route path="/signup" element={<SignupForm />} />
         <Route path="/signup-con" element={<SignupFormCon/>} />
         <Route path ="/signup-con2" element={<SignupFormCon2/>} />
+        <Route path ="/select" element={<Select/>} />
       </Routes>
     </div>
   );

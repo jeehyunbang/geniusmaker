@@ -24,7 +24,6 @@ export default function RoundedBox() {
     </div>
   );
 }
-```
 */
 import React from "react";
 import { useNavigate } from "react-router-dom"; // React Router의 useNavigate 훅 사용
