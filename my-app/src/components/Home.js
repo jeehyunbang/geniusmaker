@@ -13,7 +13,11 @@ function Home() {
 
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
-
+  const handleRegisterClick = () => {
+    setIsModalOpen(true);  // 로그인 모달 열기
+  };
+  
+  
   // API 호출
   useEffect(() => {
     const fetchData = async () => {
@@ -49,15 +53,15 @@ function Home() {
         <div className="gray-box L"></div>
       </div>
 
-      {/* 검색창 */}
-      <div className="search-bar">
-        <input
-          type="text"
-          placeholder="정보를 입력해주세요"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
+      <div className="login-section">
+        <p className="login-tooltip">
+          로그인 후 상세정보 조회가 가능해요 <span className="tooltip-icon">💬</span>
+        </p>
+        <button className="login-button" onClick={handleRegisterClick}>
+          로그인
+        </button>
       </div>
+
 
       {/* 로그인 모달 */}
       <LoginModal isOpen={isModalOpen} toggleModal={handleCloseModal} />
