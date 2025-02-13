@@ -1,94 +1,228 @@
 /* 전체 레이아웃 */
-.signupform-container {
+.eventform-container {
     display: flex;
-    justify-content: space-between; /* 좌우 배치 */
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+/* 마이페이지 헤더 */
+.member-header {
+    background-color: #eef0f3;
+    width: 100%;
+    max-width: 1200px;
+    height: 80px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    padding-left: 30px;
+}
+
+/* 학술 행사 등록 제목 */
+.conference-header {
+    width: 100%;
+    max-width: 900px;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: transparent !important; /* ✅ 배경색을 완전히 투명하게 */
+    padding: 0; 
+    border: none; 
+    box-shadow: none; 
+}
+
+
+/* 컨텐츠 정렬 */
+.eventform-content {
+    display: flex;
+    justify-content: space-between;
     align-items: flex-start;
     width: 100%;
-    max-width: 1200px; /* 고정된 최대 너비 */
-    margin: 0 auto; /* 가운데 정렬 */
-    padding: 50px 20px; /* 적당한 여백 */
-    box-sizing: border-box;
-  }
-  
-  /* 왼쪽 이미지 업로드 영역 */
-  .signupform-left {
+    max-width: 1200px;
+}
+
+/* 왼쪽 이미지 업로드 영역 */
+.eventform-left {
+    margin-top:50px;
     flex: 1;
-    max-width: 300px; /* 고정된 크기 */
-    padding-right: 30px;
-    margin-top: -25px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .image-upload-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 20px;
+    max-width: 300px;
+    text-align: center;
+}
+
+.image-upload-box {
+    width: 250px;
+    height: 300px;
     border: 2px dashed #ccc;
     border-radius: 10px;
-    background-color: #f9f9f9;
-    text-align: center;
-  }
-  
-  .image-placeholder {
-    width: 150px;
-    height: 150px;
-    background-color: #ddd;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    background-color: #f9f9f9;
+}
+
+.image-upload-box:hover {
+    background-color: #f1f1f1;
+}
+
+.image-placeholder {
+    font-size: 48px;
+    color: #ccc;
+}
+
+.uploaded-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .image-input {
+}
+
+/* 필수 정보 안내 */
+.eventform-note {
+    font-size: 14px;
+    color: #007bff;
     margin-top: 10px;
-  }
-  
-  /* 오른쪽 입력 폼 영역 */
-  .signupform-right {
+    margin-right:50px;
+}
+
+/* 오른쪽 입력 폼 영역 */
+.eventform-right {
     flex: 2;
-    max-width: 800px; /* 고정된 크기 */
-  }
-  
-  /* 입력 필드 공통 */
-  .signupform-group {
+    max-width: 800px;
+}
+
+/* 제목 스타일 */
+.section-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* 입력 필드 그룹 */
+.eventform-group {
+    margin-bottom: 20px;
+}
+
+.eventform-group label {
+    font-size: 19px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #333;
+}
+
+/* 입력 필드 스타일 */
+.eventform-input,
+.eventform-select,
+.eventform-textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: 0.3s;
+    background-color: rgb(233, 233, 233);
+}
+
+.eventform-input:focus,
+.eventform-select:focus,
+.eventform-textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* 참가비 입력 필드 */
+.eventform-input-group {
+    position: relative;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 15px;
-  }
-  
-  .signupform-group label {
-    font-size: 16px;
-    font-weight: bold;
-    width: 150px;
-    text-align: right;
-    padding-right: 10px;
-  }
-  
-  .signupform-input-text {
-    flex: 1;
-    padding: 10px;
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: rgb(233, 233, 233);
-    font-size: 14px;
+}
+
+.eventform-input {
+    flex: 1;
+    border: none;
     outline: none;
-  }
-  
-  .signupform-input-text:focus {
-    border-color: #007bff;
-  }
-  
-  .signupform-submit-button {
-    width: 100%; /* 버튼 전체 너비 */
-    max-width: 300px; /* 고정된 최대 크기 */
-    margin: 20px auto; /* 가운데 정렬 */
+    font-size: 14px;
+    padding: 12px;
+    padding-right: 40px;
+}
+
+.input-unit {
+    position: absolute;
+    right: 15px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* 필수 입력 경고 아이콘 */
+.error-icon {
+    position: absolute;
+    right: 10px;
+    font-size: 20px;
+    color: red;
+}
+
+/* 날짜 입력 */
+.eventform-date-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.eventform-date {
+    width: 48%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+/* 온/오프라인 체크박스 */
+.eventform-checkbox-group {
+    display: flex;
+    gap: 15px;
+}
+
+.eventform-checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+}
+
+/* 행사 소개 */
+.eventform-textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* 필수 입력 오류 메시지 */
+.error-message {
+    font-size: 14px;
+    color: red;
+    margin-top: 5px;
+}
+
+/* 등록 버튼 */
+.eventform-submit-button {
+    width: 100%;
+    max-width: 300px;
+    margin: 20px auto;
     background: #007bff;
     color: #fff;
     font-size: 16px;
@@ -98,9 +232,31 @@
     border-radius: 8px;
     cursor: pointer;
     transition: background 0.3s ease;
-  }
-  
-  .signupform-submit-button:hover {
+}
+
+.eventform-submit-button:hover {
     background: #0056b3;
-  }
-  
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .eventform-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .eventform-left,
+    .eventform-right {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .eventform-date-group {
+        flex-direction: column;
+    }
+
+    .eventform-checkbox-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
