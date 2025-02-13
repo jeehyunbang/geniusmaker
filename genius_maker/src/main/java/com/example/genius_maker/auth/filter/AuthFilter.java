@@ -21,7 +21,8 @@ public class AuthFilter implements Filter {
     private static final List<String> WHITE_LIST = List.of(
         "/api/members/private-register",
         "/api/members/conference-register",
-        "/api/members/login"
+        "/api/members/login",
+        "/api/s3/upload"
     );
 
     private final ObjectMapper objectMapper;
