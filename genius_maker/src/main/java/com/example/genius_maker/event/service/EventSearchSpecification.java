@@ -10,7 +10,7 @@ import java.util.List;
 
 public class EventSearchSpecification {
 
-    public static Specification<Event> searchByKeyword(String keyword) {
+    public static Specification<Event> searchByKeywordAndFilters(String keyword, String region, String eventType) {
         return (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
 
@@ -23,6 +23,17 @@ public class EventSearchSpecification {
                 predicates.add(criteriaBuilder.or(namePredicate, typePredicate, descriptionPredicate));
             }
 
+            // 2. region이 있는 경우 (완전 일치)
+            if (region != null && !region.isBlank()) {
+                predicates.add(criteriaBuilder.equal(root.get("region"), region));
+            }
+
+            // 3. eventType이 있는 경우 (완전 일치)
+            if (eventType != null && !eventType.isBlank()) {
+                predicates.add(criteriaBuilder.equal(root.get("type"), eventType));
+            }
+
+            // AND 조건으로 모든 필터 적용
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };
     }

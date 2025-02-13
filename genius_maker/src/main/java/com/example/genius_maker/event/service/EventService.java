@@ -20,9 +20,9 @@ public class EventService {
 
     private final EventRepository eventRepository;
 
-    public List<SearchEventsResponse> searchEvents(String keyword) {
+    public List<SearchEventsResponse> searchEvents(String keyword, String region, String eventType) {
         // 검색 조건 적용
-        Specification<Event> spec = EventSearchSpecification.searchByKeyword(keyword);
+        Specification<Event> spec = EventSearchSpecification.searchByKeywordAndFilters(keyword, region, eventType);
         List<Event> results = eventRepository.findAll(spec);
 
         // 검색 결과를 DTO로 변환하여 반환

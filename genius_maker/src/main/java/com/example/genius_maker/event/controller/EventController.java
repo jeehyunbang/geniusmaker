@@ -16,10 +16,16 @@ public class EventController {
     private final EventService eventService;
 
     @GetMapping("/search")
-    public ApiResponse<SearchEventResponseList> searchEvents(@RequestParam(required = false) String keyword) {
+    public ApiResponse<SearchEventResponseList> searchEvents(
+        @RequestParam(required = false) String keyword,
+        @RequestParam(required = false) String region,
+        @RequestParam(required = false) String eventType)
+    {
         return ApiResponse.successWithData(
             "행사 정보 검색 성공",
-            new SearchEventResponseList(eventService.searchEvents(keyword))
+            new SearchEventResponseList(eventService.searchEvents(
+                keyword, region, eventType
+            ))
         );
     }
 
