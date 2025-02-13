@@ -1,0 +1,106 @@
+/* 전체 레이아웃 */
+.signupform-container {
+    display: flex;
+    justify-content: space-between; /* 좌우 배치 */
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1200px; /* 고정된 최대 너비 */
+    margin: 0 auto; /* 가운데 정렬 */
+    padding: 50px 20px; /* 적당한 여백 */
+    box-sizing: border-box;
+  }
+  
+  /* 왼쪽 이미지 업로드 영역 */
+  .signupform-left {
+    flex: 1;
+    max-width: 300px; /* 고정된 크기 */
+    padding-right: 30px;
+    margin-top: -25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .image-upload-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    text-align: center;
+  }
+  
+  .image-placeholder {
+    width: 150px;
+    height: 150px;
+    background-color: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .image-input {
+    margin-top: 10px;
+  }
+  
+  /* 오른쪽 입력 폼 영역 */
+  .signupform-right {
+    flex: 2;
+    max-width: 800px; /* 고정된 크기 */
+  }
+  
+  /* 입력 필드 공통 */
+  .signupform-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+  .signupform-group label {
+    font-size: 16px;
+    font-weight: bold;
+    width: 150px;
+    text-align: right;
+    padding-right: 10px;
+  }
+  
+  .signupform-input-text {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: rgb(233, 233, 233);
+    font-size: 14px;
+    outline: none;
+  }
+  
+  .signupform-input-text:focus {
+    border-color: #007bff;
+  }
+  
+  .signupform-submit-button {
+    width: 100%; /* 버튼 전체 너비 */
+    max-width: 300px; /* 고정된 최대 크기 */
+    margin: 20px auto; /* 가운데 정렬 */
+    background: #007bff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .signupform-submit-button:hover {
+    background: #0056b3;
+  }
+  

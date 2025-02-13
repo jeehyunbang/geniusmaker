@@ -1,0 +1,162 @@
+/* 전체 페이지 레이아웃 */
+.conference-page {
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 로그인 섹션 (학술 행사 등록) */
+.login-section {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.login-tooltip {
+  font-size: 19px;
+  color: #6c757d;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.tooltip-icon {
+  margin-left: 10px;
+}
+
+.login-button {
+  padding: 10px 30px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  width: 200px;  /* 버튼 크기 조정 */
+  text-align: center;
+  min-width: 180px; /* 최소 가로 크기 설정 */
+}
+
+
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+/* 마이페이지 제목 스타일 */
+.member-header {
+  background-color: #eef0f3;
+  width: 100%;
+  max-width: 1200px;
+  height: 150px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: left;
+  font-size: 30px;
+  padding-left: 30px;
+  font-weight: bold;
+}
+
+/* 학회 정보 제목 스타일 */
+.conference-header {
+  width: 100%;
+  max-width: 900px;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 20px;
+}
+
+/* 학회 정보 컨테이너 */
+.conference-container {
+  display: flex;
+  align-items: flex-start;
+  width: 900px;
+  gap: 20px;
+  margin-top: 25px;
+}
+
+/* 학회 로고 */
+.conference-logo {
+  width: 27%;
+  height: 100px;
+}
+
+/* 학회 정보 내부 컨테이너 */
+.conference-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+/* 학회 상세 정보 섹션 (박스 스타일) */
+.conference-section {
+  width: 100%;
+  background-color: #f5f6f8;
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* 섹션 제목 */
+.section-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: black;
+}
+
+/* 정보 행 스타일 */
+.info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+/* 라벨 스타일 */
+.label {
+  font-weight: bold;
+  width: 130px;
+  text-align: left;
+  color: black;
+}
+
+/* 정보 박스 */
+.info-box {
+  background-color: white;
+  color: black;
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  display: inline-block;
+  min-width: 130px;
+  text-align: center;
+}
+
+/* 회원탈퇴 버튼 */
+.delete-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ddd;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.delete-button:hover {
+  background-color: #164cff;
+}
