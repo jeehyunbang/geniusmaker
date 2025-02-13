@@ -1,74 +1,106 @@
 import React, { useState } from 'react';
 import '../css/Home.css';
-import LoginModal from './LoginModal'; // LoginModal 컴포넌트 추가
+import LoginModal from './LoginModal';
+import { FaSearch } from "react-icons/fa";
 
 function Home() {
   const user = { nickname: '린' };
-  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 상태 관리
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const [selected, setSelected] = useState('학회정보');
 
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const [selected, setSelected] = useState('학회정보'); // 초기 상태는 '학회정보'
-
-  const handleButtonClick = (type) => {
-    setSelected(type);
-  };
-
-  const [data] = useState([
+  // 🔹 로그인 모달 열기
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
+  
+  // 🔹 학회 정보 데이터 (API 형식에 맞춤)
+  const conferenceData = [
     {
       id: 1,
-      category: '디자인',
-      logo: 'https://design-science.or.kr/media?key=designScience/homepage/logo/f7f69e79-435c-4a0d-8546-d17e70fed59a.png',
-      title: '한국디자인학회',
-      location: '성남시',
-      type: '오프라인',
+      thumbnail: "https://example.com/event1_thumbnail.jpg",
+      conference_name: "치킨",
+      organization_location: "대구",
+      category: "디자인",
     },
     {
       id: 2,
-      category: '디자인',
-      logo: 'https://design-science.or.kr/media?key=designScience/homepage/logo/f7f69e79-435c-4a0d-8546-d17e70fed59a.png',
-      title: '한국디자인학회',
-      location: '성남시',
-      type: '오프라인',
+      thumbnail: "https://example.com/event2_thumbnail.jpg",
+      conference_name: "AI 학회",
+      organization_location: "서울",
+      category: "기술",
     },
     {
       id: 3,
-      category: '디자인',
-      logo: 'https://design-science.or.kr/media?key=designScience/homepage/logo/f7f69e79-435c-4a0d-8546-d17e70fed59a.png',
-      title: '한국디자인학회',
-      location: '성남시',
-      type: '오프라인',
+      thumbnail: "https://example.com/event3_thumbnail.jpg",
+      conference_name: "의료 기술 포럼",
+      organization_location: "부산",
+      category: "의학",
     },
     {
       id: 4,
-      category: '디자인',
-      logo: 'https://design-science.or.kr/media?key=designScience/homepage/logo/f7f69e79-435c-4a0d-8546-d17e70fed59a.png',
-      title: '한국디자인학회',
-      location: '성남시',
-      type: '오프라인',
+      thumbnail: "https://example.com/event4_thumbnail.jpg",
+      conference_name: "건축 디자인 학회",
+      organization_location: "광주",
+      category: "건축",
+    }
+  ];
+
+  // 🔹 학술 행사 데이터 (API 형식에 맞춤)
+  const eventData = [
+    {
+      id: 1,
+      event_name: "AI Technology Conference 2025",
+      event_thumbnail: "https://example.com/event1_thumbnail.jpg",
+      location: "Seoul, South Korea",
+      category: "Technology",
+      is_online: false,
     },
-  ]);
+    {
+      id: 2,
+      event_name: "블록체인 포럼 2025",
+      event_thumbnail: "https://example.com/event2_thumbnail.jpg",
+      location: "부산, South Korea",
+      category: "Blockchain",
+      is_online: true,
+    },
+    {
+      id: 3,
+      event_name: "환경 지속가능성 컨퍼런스",
+      event_thumbnail: "https://example.com/event3_thumbnail.jpg",
+      location: "대전, South Korea",
+      category: "Environment",
+      is_online: false,
+    },
+    {
+      id: 4,
+      event_name: "미래 모빌리티 서밋",
+      event_thumbnail: "https://example.com/event4_thumbnail.jpg",
+      location: "인천, South Korea",
+      category: "Mobility",
+      is_online: true,
+    }
+  ];
+
+  // 🔹 선택된 데이터 표시 (학회정보 또는 학술행사)
+  const data = selected === "학회정보" ? conferenceData : eventData;
 
   return (
     <div className="home-content">
-      {/* 상단 두 개 박스 */}
+      {/* 상단 배경 박스 */}
       <div className="top-container">
         <div className="gray-box L"></div>
       </div>
 
-      {/* 로그인 섹션 */}
-      <div className="login-section">
-        <p className="login-tooltip">
-          로그인 후 상세정보 조회가 가능해요<span className="tooltip-icon">💬</span>
-        </p>
-        <button className="login-button" onClick={handleOpenModal}>
-          로그인
+      {/* 검색창 */}
+      <div className="search-bar">
+        <input
+          type="text"
+          placeholder="정보를 입력해주세요"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <button className="search-button">
+          <FaSearch />
         </button>
       </div>
 
@@ -78,41 +110,49 @@ function Home() {
       {/* 글귀와 버튼 */}
       <div className="info-section">
         <p className="info-text">
-          {user.nickname}님, 이 <span className="highlight">{selected}</span>는 어때요?
+          사용자님, 이 <span className="highlight">{selected}</span>는 어때요?
         </p>
         <div className="button-group">
           <button
             className={`conference-button ${selected === '학회정보' ? 'active' : ''}`}
-            onClick={() => handleButtonClick('학회정보')}
+            onClick={() => setSelected('학회정보')}
           >
             학회정보
           </button>
           <button
             className={`event-button ${selected === '학술행사' ? 'active' : ''}`}
-            onClick={() => handleButtonClick('학술행사')}
+            onClick={() => setSelected('학술행사')}
           >
             학술행사
           </button>
         </div>
       </div>
 
-      {/* 네 개 박스 */}
+      {/* 여러 개의 학회/학술 행사 정보 표시 */}
       <div className="grid-container">
         {data.map((item) => (
           <div key={item.id} className="data-box">
             <div className="data-top">
               <span className="data-category">{item.category}</span>
-              <img src={item.logo} alt={`${item.title} 로고`} className="data-logo" />
+              <img 
+                src={selected === "학회정보" ? item.thumbnail : item.event_thumbnail} 
+                alt={`${selected === "학회정보" ? item.conference_name : item.event_name} 로고`} 
+                className="data-logo" 
+              />
             </div>
             <div className="data-bottom">
-              <h3 className="data-title">{item.title}</h3>
+              <h3 className="data-title">
+                {selected === "학회정보" ? item.conference_name : item.event_name}
+              </h3>
               <div className="data-info">
                 <p>
-                  <span className="data-icon">📌</span> {item.location}
+                  <span className="data-icon">📌</span> {selected === "학회정보" ? item.organization_location : item.location}
                 </p>
-                <p>
-                  <span className="data-icon">👥</span> {item.type}
-                </p>
+                {selected === "학술행사" && (
+                  <p>
+                    <span className="data-icon">💻</span> {item.is_online ? "온라인" : "오프라인"}
+                  </p>
+                )}
               </div>
             </div>
           </div>
