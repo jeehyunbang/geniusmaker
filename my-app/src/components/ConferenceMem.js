@@ -1,7 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../css/ConferenceMem.css";
 
 const ConferenceMem = () => {
+  const navigate = useNavigate();
+
+  const handleRegisterClick = () => {
+    navigate("/register");
+  };
   const conference = {
     name: "린",
     institution: "루트임팩트",
@@ -22,7 +28,9 @@ const ConferenceMem = () => {
         <p className="login-tooltip">
           학회의 학술행사 정보를 등록해주세요 <span className="tooltip-icon">💬</span>
         </p>
-        <button className="login-button">학술 행사 등록</button>
+        <button className="login-button" onClick={handleRegisterClick}>
+          학술 행사 등록
+        </button>
       </div>
 
       {/* 학회 정보 */}

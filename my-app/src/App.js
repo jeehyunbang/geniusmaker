@@ -4,6 +4,7 @@ import './App.css';
 import { FaSearch } from 'react-icons/fa';
 import Conference from './components/Conference';
 import ConferenceMem from './components/ConferenceMem'; // ConferenceMem 추가
+import Register from "./components/Register";
 import Event from './components/Event';
 import Home from './components/Home';
 import Member from './components/Member'; // 기존 Member 유지, 새로운 경로로 이동
@@ -58,7 +59,7 @@ function App() {
 
         {/* 기존 Member.js가 필요하면 새로운 경로로 이동 */}
         <Route path="/members/info" element={<Member />} />
-
+        <Route path="/register" element={<Register />} />
         <Route path="/select" element={<Select />} /> {/* Select 컴포넌트 라우트 추가 */}
         <Route path="/signup" element={<SignupForm />} />
         <Route path="/signup-con" element={<SignupFormCon/>} />
