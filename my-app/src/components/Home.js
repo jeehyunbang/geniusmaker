@@ -73,7 +73,7 @@ function Home() {
     },
     {
       id: 4,
-      event_name: "미래 모빌리티 서밋",
+      event_name: "미래 모빌리티서밋",
       event_thumbnail: "https://example.com/event4_thumbnail.jpg",
       location: "인천, South Korea",
       category: "Mobility",
