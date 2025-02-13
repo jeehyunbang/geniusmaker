@@ -22,7 +22,9 @@ public class AuthFilter implements Filter {
         "/api/members/private-register",
         "/api/members/conference-register",
         "/api/members/login",
-        "/api/s3/upload"
+        "/api/s3/upload",
+        "/api/events/search",
+        "/api/conference/search"
     );
 
     private final ObjectMapper objectMapper;
