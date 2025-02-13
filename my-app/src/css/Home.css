@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    width: 55%;
+    width: 90%;
     margin: 0 auto;
 }
 /* 🔹 검색 입력 필드 */
@@ -185,9 +185,10 @@
 }
 
 .info-text {
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    margin-top:0px;
 }
 
 .highlight {
@@ -197,15 +198,15 @@
 
 .button-group {
     display: flex;
-    gap: 10px;
+    gap: 13px;
     justify-content: left;
 }
 
 .conference-button, .event-button {
-    padding: 5px 11px;
+    padding: 6px 13px;
     border: none;
     border-radius: 6px;
-    font-size: 12px;
+    font-size: 16px;
     cursor: pointer;
     background-color: #f1f1f1;
     color: black;
@@ -309,10 +310,11 @@
 .popular-text {
     flex: 0.9;
     text-align: left;
+    margin-top: -70px;
 }
 
 .popular-text h3 {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: bold;
     line-height: 1.5;
 }

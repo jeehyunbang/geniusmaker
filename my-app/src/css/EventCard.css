@@ -1,33 +1,57 @@
 .event-card {
-    background-color: white;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
+  background-color: white;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 250px;
+}
+
+.category {
+  background-color: black;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 12px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.event-image {
+  width: 80%;
+  max-width: 100px;
+}
+
+.event-title {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+/* 🔹 Flex 적용하여 줄 바꿈 방지 */
+.event-info {
+  font-size: 14px;
+  color: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px; /* 아이콘과 텍스트 간격 */
+  white-space: nowrap; /* 🔹 줄 바꿈 방지 */
+}
+
+/* 🔹 아이콘 최소 너비 설정 */
+.event-info span {
+  min-width: 30px;
+}
+
+/* 🔹 반응형 조정 */
+@media (max-width: 400px) {
+  .event-card {
+      max-width: 90%;
   }
-  
-  .category {
-    background-color: black;
-    color: white;
-    padding: 4px 8px;
-    border-radius: 5px;
-    font-size: 12px;
-    display: inline-block;
-    margin-bottom: 10px;
-  }
-  
-  .event-image {
-    width: 80%;
-    max-width: 100px;
-  }
-  
-  .event-title {
-    font-size: 16px;
-    margin: 10px 0;
-  }
-  
+
   .event-info {
-    font-size: 14px;
-    color: gray;
+      font-size: 13px;
+      gap: 3px; /* 작은 화면에서는 간격 축소 */
   }
-  
+}

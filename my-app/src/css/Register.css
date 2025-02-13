@@ -10,19 +10,6 @@
     box-sizing: border-box;
 }
 
-/* 마이페이지 헤더 */
-.member-header {
-    background-color: #eef0f3;
-    width: 100%;
-    max-width: 1200px;
-    height: 80px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    font-size: 24px;
-    font-weight: bold;
-    padding-left: 30px;
-}
 
 /* 학술 행사 등록 제목 */
 .conference-header {
@@ -31,8 +18,8 @@
     font-size: 25px;
     font-weight: bold;
     text-align: left;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-left: -13%;
     background-color: transparent !important; /* ✅ 배경색을 완전히 투명하게 */
     padding: 0; 
     border: none; 
@@ -88,7 +75,7 @@
 
 /* 필수 정보 안내 */
 .eventform-note {
-    font-size: 14px;
+    font-size: 17px;
     color: #007bff;
     margin-top: 10px;
     margin-right:50px;
@@ -102,10 +89,10 @@
 
 /* 제목 스타일 */
 .section-title {
-    font-size: 22px;
+    font-size: 27px;
     font-weight: bold;
-    color: #333;
-    margin-bottom: 15px;
+    color: #000000;
+    margin-bottom: 20px;
 }
 
 /* 입력 필드 그룹 */
@@ -158,7 +145,7 @@
     outline: none;
     font-size: 14px;
     padding: 12px;
-    padding-right: 40px;
+    padding-right: 20px;
 }
 
 .input-unit {

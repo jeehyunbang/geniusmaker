@@ -5,98 +5,80 @@
   padding: 0;
 }
 
-/* 헤더 */
-.header {
-  display: flex;
-  flex-direction: column;
-  background-color: #ffffff;
-  padding: 10px 20px;
-}
-
-/* 상단 회원가입/로그인 */
+/* 🔹 상단 회원가입/로그인 */
 .top-header {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 10px;
+  align-items: center; /* 요소를 같은 높이에 정렬 */
+  padding: 5px 50px;
+  background-color: #f8f9fa;
+  font-size: 16px;
 }
 
+/* 🔹 회원가입 & 로그인 정렬 */
 .auth-links {
   display: flex;
-  gap: 10px;
+  gap: 12px;
+  align-items: center; /* 버튼 높이 정렬 */
 }
 
-.auth-link {
-  background: none;
-  border: none;
-  color: #aaa;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: color 0.3s ease;
+/* 🔹 회원가입과 로그인 버튼을 동일한 스타일로 */
+.auth-link, .nav-login-btn {
   text-decoration: none;
-}
-
-.auth-link:hover {
-  color: #555;
-}
-
-/* 네비게이션 바 로그인 버튼 */
-.nav-login-btn {
+  color: black;
+  font-weight: bold;
+  font-size: 16px; /* 폰트 크기 통일 */
   background: none;
   border: none;
-  color: #aaa;
-  font-size: 1rem;
   cursor: pointer;
-  transition: color 0.3s ease;
+  padding: 5px 17px; /* 클릭 영역 확대 */
 }
 
-.nav-login-btn:hover {
+.auth-link:hover, .nav-login-btn:hover {
   color: #555;
 }
 
-/* 메인 네비게이션 */
+
+/* 🔹 메인 헤더 (로고 + 네비게이션) */
 .main-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 95%;
-  padding: 0 20px;
+  height: 70px;
+  padding: 10px 90px;
 }
 
-
-.logo-image {
-  margin-left: 40px;
-  margin-top: -40px; /* 위로 올리기 */
-  width: 250px; /* 원하는 크기로 조정 */
-  height: auto; /* 비율 유지 */
-}
-
-.nav-container {
+/* 🔹 로고 스타일 */
+.logo {
   display: flex;
   align-items: center;
-  justify-content: center; /* 네비게이션을 중앙 정렬 */
-  max-width: 1000px; /* 네비게이션이 지나치게 넓어지지 않도록 제한 */
-  margin: 0 auto; /* 중앙 정렬 */
-  padding: 0 50px; /* 좌우 여백 추가 */
-  margin-top: -10px; /* 네비게이션 바 전체 위로 이동 */
+  text-decoration: none;
+}
+.logo img {
+  width: 180px; /* 기존보다 로고 크기 증가 */
+  height: auto;
+}
+/* 🔹 네비게이션 메뉴 */
+.nav-container {
+  display: flex;
 }
 
 .nav {
   display: flex;
   list-style: none;
   padding: 0;
-  margin: 0; /* margin-left 제거하고 중앙 정렬 */
+  margin: 0;
 }
 
 .nav li {
-  margin: 0 30px; /* 좌우 여백을 주어 간격 조정 */
+  margin-left: 30px;
 }
 
 .nav li a {
   text-decoration: none;
-  color: #000;
-  font-size: 1.4rem;
+  color: black;
+  font-size: 22px;
   font-weight: bold;
-  transition: color 0.3s ease;
 }
 
 .nav li a:hover {
