@@ -1,0 +1,125 @@
+/* 전체 레이아웃 */
+.signupformCon-container {
+    display: flex;
+    justify-content: space-between; /* 좌우 배치 */
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1200px; /* 고정된 최대 너비 */
+    margin: 0 auto; /* 가운데 정렬 */
+    padding: 50px 20px; /* 적당한 여백 */
+    box-sizing: border-box;
+  }
+  
+  /* 왼쪽 설명 영역 */
+  .signupformCon-left {
+    flex: 1;
+    max-width: 300px; /* 고정된 크기 */
+    padding-right: 30px;
+    margin-top: -25px;
+  }
+  
+  .signupformCon-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 20px;
+  }
+  
+  .signupformCon-subtitle {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  
+  .signupformCon-note {
+    font-size: 14px;
+    color: #007bff;
+  }
+  
+  /* 오른쪽 입력 폼 영역 */
+  .signupformCon-right {
+    flex: 2;
+    max-width: 800px; /* 고정된 크기 */
+  }
+  
+  /* 입력 필드 공통 */
+  .signupformCon-input-group {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    position: relative;
+    background-color: rgb(233, 233, 233);
+    max-width: 80%;
+  }
+  
+  .signupformCon-input-text {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background-color: rgb(233, 233, 233);
+  }
+  
+  .signupformCon-domain-select {
+    flex: 1;
+    margin-left: -1px;
+    padding: 1px; 
+    border: none;
+    background:rgb(233, 233, 233);
+    border-radius: 4px;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .signupformCon-fixed-label {
+    position: absolute;
+    right: 10px; /* 입력 필드 가장 오른쪽 */
+    font-size: 20px;
+    color: #666;
+    background-color: rgb(233, 233, 233);
+  }
+  
+  /* 회원가입 버튼 */
+  .signupformCon-submit-button {
+    width: 100%; /* 버튼 전체 너비 */
+    max-width: 120px; /* 고정된 최대 크기 */
+    margin-top: 100px; /* 가운데 정렬 */
+    margin-left: 450px;
+    background: #007bff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .signupformCon-submit-button:hover {
+    background: #0056b3;
+  }
+  
+  /* 고정된 위치와 크기 */
+  .signupformCon-group {
+    margin-bottom: 20px;
+  }
+  
+  .signupformCon-group label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #333;
+  }
+  
+  .signupformCon-required {
+    color: #007bff;
+    margin-right: 5px;
+    font-weight: bold;
+  }
+  

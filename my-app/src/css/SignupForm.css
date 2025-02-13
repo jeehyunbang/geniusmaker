@@ -52,6 +52,7 @@
   padding: 12px;
   margin-bottom: 10px;
   position: relative;
+  background-color: rgb(233, 233, 233);
 }
 
 .signupform-input-text {
@@ -59,6 +60,7 @@
   border: none;
   outline: none;
   font-size: 14px;
+  background-color: rgb(233, 233, 233);
 }
 
 .signupform-domain-select {

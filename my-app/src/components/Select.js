@@ -61,7 +61,7 @@ export default function Select() {
         </button>
         <button
           className="select-button"
-          onClick={() => handleNavigation("/conference-signup")} // 학회 경로로 이동
+          onClick={() => handleNavigation("/signup-con")} // 학회 경로로 이동
         >
           학회
         </button>
