@@ -1,18 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../css/Event.css";
 import EventCard from "./EventCard"; // 올바르게 임포트
 import { FaSearch } from "react-icons/fa"; // 돋보기 아이콘 추가
 
-const events = Array(84).fill({
-  category: "디자인",
-  title: "한국디자인학회",
-  location: "성남시",
-  mode: "오프라인",
-  image: "/images/conference-logo.png",
-});
-
 const regions = [
-  "서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종", 
+  "서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종",
   "경기", "강원", "충북", "충남", "전북", "전남", "경북", "경남", "제주"
 ];
 
@@ -29,18 +21,49 @@ const Event = () => {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("");
+  const [events, setEvents] = useState([]); // 이벤트 데이터 상태
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태
   const [pageGroup, setPageGroup] = useState(0); // 현재 페이지 그룹 상태
 
-  // 필터링된 이벤트
-  const filteredEvents = events.filter((event) =>
-    event.title.includes(search) &&
-    (selectedCategory ? event.category === selectedCategory : true) &&
-    (selectedRegion ? event.location === selectedRegion : true)
-  );
+  // API 호출
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const query = new URLSearchParams({
+          keyword: search || "",
+          region: selectedRegion || "",
+          eventType: selectedCategory || "",
+        }).toString();
+
+        const url = `http://43.200.115.60/api/events/search?${query}`;
+        console.log("API 요청 URL:", url);
+
+        const response = await fetch(url, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log("API 응답 데이터:", data);
+          setEvents(data.data.events || []);
+        } else {
+          console.error("API 호출 실패:", response.statusText);
+          setEvents([]);
+        }
+      } catch (error) {
+        console.error("네트워크 에러 발생:", error.message || error);
+        setEvents([]);
+      }
+    };
+
+    fetchEvents();
+  }, [search, selectedCategory, selectedRegion]);
 
   // 총 페이지 수
-  const totalPages = Math.ceil(filteredEvents.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(events.length / ITEMS_PER_PAGE);
 
   // 페이지 그룹 계산
   const totalGroups = Math.ceil(totalPages / MAX_VISIBLE_PAGES);
@@ -52,9 +75,9 @@ const Event = () => {
   );
 
   // 현재 페이지에 해당하는 이벤트
-  const currentEvents = filteredEvents.slice(
-                        (currentPage - 1) * ITEMS_PER_PAGE,
-                        currentPage * ITEMS_PER_PAGE
+  const currentEvents = events.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
   );
 
   // 페이지 변경 핸들러
@@ -66,12 +89,10 @@ const Event = () => {
 
   // 페이지 그룹 변경 핸들러
   const changePageGroup = (direction) => {
-    if (direction === "next" && pageGroup < totalGroups - 1) 
-    {
+    if (direction === "next" && pageGroup < totalGroups - 1) {
       setPageGroup(pageGroup + 1);
       setCurrentPage((pageGroup + 1) * MAX_VISIBLE_PAGES + 1);
-    } 
-    else if (direction === "prev" && pageGroup > 0) {
+    } else if (direction === "prev" && pageGroup > 0) {
       setPageGroup(pageGroup - 1);
       setCurrentPage(pageGroup * MAX_VISIBLE_PAGES);
     }
@@ -92,16 +113,40 @@ const Event = () => {
             <FaSearch />
           </button>
         </div>
+        <div className="filter-group">
+          <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
+            <option value="">📂 분야</option>
+            {categories.map((category, index) => (
+              <option key={index} value={category}>{category}</option>
+            ))}
+          </select>
+          <select value={selectedRegion} onChange={(e) => setSelectedRegion(e.target.value)}>
+            <option value="">📍 지역</option>
+            {regions.map((region, index) => (
+              <option key={index} value={region}>{region}</option>
+            ))}
+          </select>
+        </div>
       </div>
 
-      {/* 학회 정보 섹션 */}
+      {/* 행사 정보 섹션 */}
       <div className="event-section">
-        <h2 className="section-title">학회정보</h2>
-        <p className="subtitle">유용한 학회 정보를 모아봤어요</p>
+        <h2 className="section-title">행사 정보</h2>
+        <p className="subtitle">유용한 행사 정보를 모아봤어요</p>
 
         <div className="event-grid">
           {currentEvents.length > 0 ? (
-            currentEvents.map((conf, index) => <EventCard key={index} {...conf} />)
+            currentEvents.map((event) => (
+              <EventCard
+                key={event.id}
+                id={event.id}
+                name={event.name}
+                imageUrl={event.imageUrl}
+                region={event.region}
+                category={event.eventType}
+                offline={event.offline}
+              />
+            ))
           ) : (
             <p>검색 결과가 없습니다.</p>
           )}
