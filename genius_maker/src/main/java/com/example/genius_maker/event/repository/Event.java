@@ -1,4 +1,4 @@
-package com.example.genius_maker.otherentity;
+package com.example.genius_maker.event.repository;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -52,6 +52,37 @@ public class Event {
 
     @Column(name = "offline", nullable = false)
     private boolean offline;
+
+    public Event(
+        final String name,
+        final String imageUrl,
+        final String organizer,
+        final String type,
+        final String region,
+        final LocalDateTime startAt,
+        final LocalDateTime endAt,
+        final int fee,
+        final String officialUrl,
+        final String joinUrl,
+        final String description,
+        final boolean offline
+    ) {
+        this(
+            null,
+            name,
+            imageUrl,
+            organizer,
+            type,
+            region,
+            startAt,
+            endAt,
+            fee,
+            officialUrl,
+            joinUrl,
+            description,
+            offline
+        );
+    }
 
     public Event(
         final Long id,
