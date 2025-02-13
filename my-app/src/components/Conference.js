@@ -1,10 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../css/Conference.css";
 import ConferenceCard from "./ConferenceCard";
 import { FaSearch } from "react-icons/fa"; // 돋보기 아이콘 추가
 
+const conferences = Array(84).fill({
+  category: "디자인",
+  title: "한국디자인학회",
+  location: "성남시",
+  mode: "오프라인",
+  image: "/images/conference-logo.png",
+});
+
 const regions = [
-  "서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종",
+  "서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종", 
   "경기", "강원", "충북", "충남", "전북", "전남", "경북", "경남", "제주"
 ];
 
@@ -21,55 +29,18 @@ const Conference = () => {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("");
-  const [conferences, setConferences] = useState([]); // 학회 데이터 상태
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태
   const [pageGroup, setPageGroup] = useState(0); // 현재 페이지 그룹 상태
 
-  // API 호
-  useEffect(() => {
-    const fetchConferences = async () => {
-      try {
-        // 기본 학회 정보(ID 1~) 가져오기
-        let url = `http://43.200.115.60/api/conference/search?`;
-  
-        // 검색 및 필터가 설정된 경우 쿼리 문자열 추가
-        const query = new URLSearchParams({
-          keyword: search || "",
-          region: selectedRegion || "",
-          researchType: selectedCategory || "",
-        }).toString();
-  
-        url += query;
-  
-        console.log("API 요청 URL:", url);
-  
-        const response = await fetch(url, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-  
-        if (response.ok) {
-          const data = await response.json();
-          console.log("API 응답 데이터:", data);
-          setConferences(data.data.conferences || []);
-        } else {
-          console.error("API 호출 실패:", response.statusText);
-          setConferences([]);
-        }
-      } catch (error) {
-        console.error("네트워크 에러 발생:", error.message || error);
-        setConferences([]);
-      }
-    };
-  
-    fetchConferences();
-  }, [search, selectedCategory, selectedRegion]);
-  
+  // 필터링된 이벤트
+  const filteredEvents = conferences.filter((event) =>
+    event.title.includes(search) &&
+    (selectedCategory ? event.category === selectedCategory : true) &&
+    (selectedRegion ? event.location === selectedRegion : true)
+  );
 
   // 총 페이지 수
-  const totalPages = Math.ceil(conferences.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(filteredEvents.length / ITEMS_PER_PAGE);
 
   // 페이지 그룹 계산
   const totalGroups = Math.ceil(totalPages / MAX_VISIBLE_PAGES);
@@ -80,10 +51,10 @@ const Conference = () => {
     (_, i) => currStart + i
   );
 
-  // 현재 페이지에 해당하는 학회 데이터
-  const currentEvents = conferences.slice(
-    (currentPage - 1) * ITEMS_PER_PAGE,
-    currentPage * ITEMS_PER_PAGE
+  // 현재 페이지에 해당하는 이벤트
+  const currentEvents = filteredEvents.slice(
+                        (currentPage - 1) * ITEMS_PER_PAGE,
+                        currentPage * ITEMS_PER_PAGE
   );
 
   // 페이지 변경 핸들러
@@ -95,10 +66,12 @@ const Conference = () => {
 
   // 페이지 그룹 변경 핸들러
   const changePageGroup = (direction) => {
-    if (direction === "next" && pageGroup < totalGroups - 1) {
+    if (direction === "next" && pageGroup < totalGroups - 1) 
+    {
       setPageGroup(pageGroup + 1);
       setCurrentPage((pageGroup + 1) * MAX_VISIBLE_PAGES + 1);
-    } else if (direction === "prev" && pageGroup > 0) {
+    } 
+    else if (direction === "prev" && pageGroup > 0) {
       setPageGroup(pageGroup - 1);
       setCurrentPage(pageGroup * MAX_VISIBLE_PAGES);
     }

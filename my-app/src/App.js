@@ -45,7 +45,7 @@ function App() {
               <ul className="nav">
                 <li><Link to="/conferences">학회정보</Link></li>
                 <li><Link to="/events">학술행사정보</Link></li>
-                <li><Link to="/members">마이페이지</Link></li>
+                <li><Link to="/register">정보 등록</Link></li>
               </ul>
             </div>
           </div>

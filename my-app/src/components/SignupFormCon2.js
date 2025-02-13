@@ -20,11 +20,13 @@ export default function SignupFormCon2() {
   );
   const [errors, setErrors] = useState({});
 
+  // 입력 변경 핸들러
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  // 유효성 검사 함수
   const validateForm = () => {
     const newErrors = {};
     if (!formData.researchType) newErrors.researchType = "연구 분야를 선택해주세요.";
@@ -38,9 +40,9 @@ export default function SignupFormCon2() {
   
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
-    };
-  
+  };
 
+  // 다음 페이지 이동
   const handleNext = (e) => {
     e.preventDefault();
   
@@ -58,14 +60,15 @@ export default function SignupFormCon2() {
       alert("모든 필수 정보를 입력해주세요!");
     }
   };
-  
 
+  // 이전 페이지 이동
   const handlePrevious = () => {
     navigate("/signup-con");
   };
 
   return (
     <div className="signupformCon2-container">
+      {/* 🔹 왼쪽 설명 */}
       <div className="signupformCon2-left">
         <h1 className="signupformCon2-title">회원가입</h1>
         <p className="signupformCon2-subtitle">
@@ -77,9 +80,10 @@ export default function SignupFormCon2() {
         </p>
       </div>
 
+      {/* 🔹 오른쪽 폼 */}
       <div className="signupformCon2-right">
         <form onSubmit={handleNext}>
-          {/* 연구 분야 */}
+          {/* 🔹 연구 분야 */}
           <div className="signupformCon2-group">
             <label>
               <span className="signupformCon2-required">*</span>연구 분야
@@ -113,7 +117,7 @@ export default function SignupFormCon2() {
             )}
           </div>
 
-          {/* 주소 */}
+          {/* 🔹 주소 */}
           <div className="signupformCon2-group">
             <label>
               <span className="signupformCon2-required">*</span>주소
@@ -133,7 +137,7 @@ export default function SignupFormCon2() {
             )}
           </div>
 
-          {/* 학회 참가비 */}
+          {/* 학회 참가비 (선택 사항) */}
           <div className="signupformCon2-group">
             <label>학회 참가비</label>
             <div className="signupformCon2-input-group">
@@ -150,7 +154,7 @@ export default function SignupFormCon2() {
             </div>
           </div>
 
-          {/* 공식 웹사이트 */}
+          {/* 🔹 공식 웹사이트 */}
           <div className="signupformCon2-group">
             <label>
               <span className="signupformCon2-required">*</span>공식 웹사이트
@@ -186,6 +190,7 @@ export default function SignupFormCon2() {
           </div>
 
           {/* 논문 제출 가능 여부 */}
+          {/* 🔹 논문 제출 가능 여부 */}
           <div className="signupformCon2-group">
             <label>
               <span className="signupformCon2-required">*</span>논문 제출 가능 여부
@@ -218,7 +223,8 @@ export default function SignupFormCon2() {
           </div>
 
 
-          {/* 버튼 그룹 */}
+
+          {/* 🔹 버튼 그룹 */}
           <div className="signupformCon2-button-group">
             <button
               type="button"

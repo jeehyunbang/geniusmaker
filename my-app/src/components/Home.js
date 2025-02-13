@@ -6,67 +6,51 @@ import { useNavigate } from "react-router-dom";
 function Home() {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [search, setSearch] = useState("");
   const [selected, setSelected] = useState("학회정보");
   const [data, setData] = useState([]);
-  const [user, setUser] = useState(null); // 사용자 상태 관리
+  const [user, setUser] = useState(null);
+  const [eventImages, setEventImages] = useState([]); // 최신 행사 이미지 상태 추가
 
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
 
   const handleLogout = () => {
-    localStorage.removeItem("loginToken"); // JWT 토큰 삭제
-    setUser(null); // 사용자 상태 초기화
+    localStorage.removeItem("loginToken");
+    setUser(null);
   };
 
+  // ✅ 최신 학술 행사 이미지 API 호출
   useEffect(() => {
-    // JWT 토큰으로 사용자 정보 조회
-    const token = localStorage.getItem("loginToken");
-    if (token) {
-      const fetchUserInfo = async () => {
-        try {
-          const response = await fetch("http://43.200.115.60/api/members/my-info", {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${token}`, // JWT 토큰 전달
-            },
-          });
-          if (response.ok) {
-            const result = await response.json();
-            setUser(result.data); // 사용자 정보 설정
-          } else {
-            console.error("사용자 정보 조회 실패:", response.statusText);
-          }
-        } catch (error) {
-          console.error("사용자 정보 조회 중 오류 발생:", error);
-        }
-      };
-
-      fetchUserInfo();
-    }
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
+    const fetchLatestEventImages = async () => {
       try {
-        const endpoint =
-          selected === "학회정보"
-            ? "http://43.200.115.60/api/conferences"
-            : "http://43.200.115.60/api/events";
-        const response = await fetch(endpoint);
-        if (response.ok) {
-          const result = await response.json();
-          setData(result.data);
+        const response = await fetch("http://43.200.115.60/api/events/expose", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP 오류! 상태 코드: ${response.status}`);
+        }
+
+        const result = await response.json();
+        console.log("✅ API 응답 데이터:", result);
+
+        if (result.data?.images?.length > 1) {
+          setEventImages(result.data.images.slice(0, 2)); // ✅ 최신 이미지 2개 저장
+          console.log("✅ 최신 행사 이미지 가져옴:", result.data.images.slice(0, 2));
         } else {
-          console.error("API 호출 실패:", response.statusText);
+          console.warn("🚨 최신 행사 이미지 데이터가 부족함");
         }
       } catch (error) {
-        console.error("API 호출 중 오류 발생:", error);
+        console.error("❌ 최신 행사 이미지 가져오는 중 오류 발생:", error);
       }
     };
 
-    fetchData();
-  }, [selected]);
+    fetchLatestEventImages();
+  }, []);
 
   const handleCardClick = (id) => {
     navigate(`/conferences/${id}`);
@@ -74,8 +58,16 @@ function Home() {
 
   return (
     <div className="home-content">
+      {/* ✅ 상단 배경 박스에 최신 행사 이미지 적용 */}
       <div className="top-container">
-        <div className="gray-box L"></div>
+        <div
+          className="gray-box L"
+          style={{
+            backgroundImage: eventImages[0] ? `url(${eventImages[0]})` : "none",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        ></div>
       </div>
 
       <div className="login-section">
@@ -101,11 +93,7 @@ function Home() {
         )}
       </div>
 
-      <LoginModal
-        isOpen={isModalOpen}
-        toggleModal={handleCloseModal}
-        setUser={setUser} // 로그인 성공 시 사용자 정보 설정
-      />
+      <LoginModal isOpen={isModalOpen} toggleModal={handleCloseModal} setUser={setUser} />
 
       <div className="info-section">
         <p className="info-text">
@@ -115,17 +103,13 @@ function Home() {
         </p>
         <div className="button-group">
           <button
-            className={`conference-button ${
-              selected === "학회정보" ? "active" : ""
-            }`}
+            className={`conference-button ${selected === "학회정보" ? "active" : ""}`}
             onClick={() => setSelected("학회정보")}
           >
             학회정보
           </button>
           <button
-            className={`event-button ${
-              selected === "학술행사" ? "active" : ""
-            }`}
+            className={`event-button ${selected === "학술행사" ? "active" : ""}`}
             onClick={() => setSelected("학술행사")}
           >
             학술행사
@@ -135,37 +119,23 @@ function Home() {
 
       <div className="grid-container">
         {data.map((item) => (
-          <div
-            key={item.id}
-            className="data-box"
-            onClick={() => handleCardClick(item.id)}
-          >
+          <div key={item.id} className="data-box" onClick={() => handleCardClick(item.id)}>
             <div className="data-top">
               <span className="data-category">{item.category}</span>
               <img
-                src={
-                  selected === "학회정보" ? item.thumbnail : item.event_thumbnail
-                }
-                alt={
-                  selected === "학회정보"
-                    ? item.conference_name
-                    : item.event_name
-                }
+                src={selected === "학회정보" ? item.thumbnail : item.event_thumbnail}
+                alt={selected === "학회정보" ? item.conference_name : item.event_name}
                 className="data-logo"
               />
             </div>
             <div className="data-bottom">
               <h3 className="data-title">
-                {selected === "학회정보"
-                  ? item.conference_name
-                  : item.event_name}
+                {selected === "학회정보" ? item.conference_name : item.event_name}
               </h3>
               <div className="data-info">
                 <p>
                   <span className="data-icon">📌</span>{" "}
-                  {selected === "학회정보"
-                    ? item.organization_location
-                    : item.location}
+                  {selected === "학회정보" ? item.organization_location : item.location}
                 </p>
               </div>
             </div>
@@ -173,20 +143,26 @@ function Home() {
         ))}
       </div>
 
+      {/* ✅ 최신 학술 행사 정보 영역에 최신 행사 이미지 적용 */}
       <div className="popular-section">
         <div className="popular-text">
           <h3>
-            오늘의 인기
+            최신
             <br />
-            학회&학술행사
+            학술행사
             <br />
             정보예요 👀
           </h3>
         </div>
-        <div className="popular-box gray-box"></div>
+        <div
+          className="popular-box gray-box"
+          style={{
+            backgroundImage: eventImages[1] ? `url(${eventImages[1]})` : "none",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        ></div>
       </div>
-
-s
     </div>
   );
 }
