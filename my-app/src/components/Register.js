@@ -86,7 +86,6 @@ export default function EventForm() {
 
   return (
     <div className="eventform-container">
-      <header className="member-header">마이페이지</header>
 
       <h2 className="conference-header">학술 행사 등록</h2>
 
@@ -147,7 +146,7 @@ export default function EventForm() {
                 value={eventCategory}
                 onChange={(e) => setEventCategory(e.target.value)}
               >
-                {["사회문화", "과학기술", "예술", "교육"].map((category) => (
+                {["디자인", "기계 공학", "전자 공학", "생명 과학", "화학", "물리", "경제학", "경영학","사회학","심리학", "법학","의학", "건축학"].map((category) => (
                   <option key={category} value={category}>{category}</option>
                 ))}
               </select>
