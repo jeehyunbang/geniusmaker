@@ -3,36 +3,10 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    width: 55%;
+    width: 70%;
     margin: 0 auto;
 }
-/* 🔹 검색 입력 필드 */
-  .search-bar {
-    display: flex;
-    width: 80%;  /* 가로 길이를 더 크게 조정 */
-    max-width: 800px; /* 최대 길이 설정 */
-    background-color: white;
-    border-radius: 25px;
-    overflow: hidden;
-    border: 1px solid #ccc;
-  }
-  
-  .search-bar input {
-    flex: 1;
-    padding: 14px 20px;
-    border: none;
-    outline: none;
-    font-size: 16px;
-  }
-  
-  .search-bar .search-button {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 12px 18px;
-    font-size: 16px;
-    color: gray;
-  }
+
 .top-container {
     display: flex;
     gap: 7%;
@@ -47,7 +21,7 @@
 
 .gray-box.L {
     width: 100%;
-    height: 180px;
+    height: 300px;
 }
 
 .modal-active {

@@ -90,20 +90,19 @@ export default function SignupFormCon() {
             {errors.name && <p className="error-message">{errors.name}</p>}
           </div>
 
-          {/* 소속기관 */}
           <div className="signupformCon-group">
-            <label><span className="signupformCon-required">*</span>소속기관</label>
-            <div className={`signupformCon-input-group ${errors.organization ? "error" : ""}`}>
+            <label>
+              <span className="signupformCon-required">*</span>설립일
+            </label>
+            <div className={`signupformCon-input-group ${errors.foundedAt ? "error" : ""}`}>
               <input
-                type="text"
-                name="organization"
-                placeholder="소속기관을 입력해주세요"
+                type="date"
+                name="foundedAt"
                 className="signupformCon-input-text"
-                value={formData.organization}
+                value={formData.foundedAt}
                 onChange={handleChange}
               />
             </div>
-            {errors.organization && <p className="error-message">{errors.organization}</p>}
           </div>
 
           {/* 담당자 */}

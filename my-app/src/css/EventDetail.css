@@ -1,145 +1,225 @@
-/* 블러 처리 (학회 정보만) */
+/* 전체 레이아웃 */
+.event-detail-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: "Arial", sans-serif;
+}
+
+/* 헤더 */
+.event-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.back-button {
+  font-size: 25px;
+  font-weight: bold;
+  color: #333;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.back-button:hover {
+  color: #000;
+}
+
+/* 학술 행사 정보 제목 */
+.event-header h2 {
+  font-size: 25px;
+  font-weight: bold;
+  color: #222;
+}
+
+/* 메인 콘텐츠 레이아웃 */
+.event-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  justify-content: space-between;
+}
+
+/* 왼쪽 썸네일 */
+.thumbnail-container {
+  width: 40%;
+  max-width: 400px;
+}
+
+.thumbnail-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* 오른쪽 학회 정보 */
+.event-info {
+  width: 60%;
+}
+
+.event-name {
+  font-size: 26px;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.event-description {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+/* 정보 섹션 헤더 */
+.info-header {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 5px;
+}
+
+/* 상세 정보 리스트 */
+.event-details {
+  list-style: none;
+  padding: 0;
+  font-size: 16px;
+  color: #444;
+}
+
+.event-details li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.event-details strong {
+  font-weight: bold;
+  color: #222;
+  min-width: 140px;
+  display: inline-block;
+}
+
+/* 링크 스타일 */
+.event-details a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.event-details a:hover {
+  text-decoration: underline;
+}
+
+/* 참가 버튼 컨테이너 */
+.apply-button-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.apply-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 18px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+}
+
+.apply-button:hover {
+  background-color: #0056b3;
+}
+
+/* 로그인 필요시 블러 처리 */
 .blurred {
-    position: relative;
-    filter: blur(6px); /* 블러 효과 */
-    pointer-events: none; /* 클릭 방지 */
+  position: relative;
+  filter: blur(6px);
+  pointer-events: none;
 }
 
 /* 로그인 안내 메시지 및 버튼 */
 .login-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    z-index: 10;
-    width: 80%;
-    max-width: 300px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  z-index: 10;
+  width: 80%;
+  max-width: 300px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* 로그인 버튼 */
 .login-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    width: 100%;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100%;
 }
 
 .login-button:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
+/* 반응형 스타일 */
+@media screen and (max-width: 900px) {
+  .event-content {
+      flex-direction: column;
+      align-items: center;
+  }
 
-/* 전체 컨테이너 스타일 */
-.conference-detail-container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: "Arial", sans-serif;
-    background-color: #ffffff;
+  .thumbnail-container {
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
   }
-  
-  /* 학회 정보 헤더 스타일 (화살표 버튼 포함) */
-  .conference-header {
-    background-color: #f8f9fa;
-    padding: 7px 20px;
-    border-radius: 0px;
-    display: flex;
-    align-items: center;
-    margin-bottom: 0px;
-  }
-  
-  /* 뒤로 가기 버튼 스타일 */
-  .back-button {
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-    background: none;
-    border: none;
-    cursor: pointer;
-    margin-right: 15px;
-  }
-  
-  .back-button:hover {
-    color: #000000;
-  }
-  
-  /* 학회 제목 스타일 */
-  .conference-header h2 {
-    font-size: 23px;
-    font-weight: bold;
-    margin-right: 10px;
-  }
-  
-  /* 학회 로고 컨테이너 */
-  .logo-container {
-    background-color: #f5f5f5;
-    padding: 100px;
-    text-align: center;
-    border-radius: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .logo-container img {
-    width: 120px;
-    height: auto;
-  }
-  
-  /* 학회 정보 내용 */
-  .conference-content {
-    background: #ffffff;
-    border-radius: 15px;
-    padding: 2px;
-  }
-  
-  .conference-name {
-    font-size:40px;
-    font-weight: bold;
-    color: #222;
-  }
-  
-  .conference-description {
-    font-size: 20px;
-    color: #555;
-    margin-bottom: 10px;
-    line-height: 1.6;
-  }
-  
-  /* 학회 상세 정보 리스트 */
-  .conference-details {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .conference-details li {
-    font-size: 16px;
-    font-weight: bold;
 
-    margin: 8px 0;
+  .event-info {
+      width: 100%;
+      margin-top: 20px;
   }
-  
-  .conference-details strong {
-    font-size: 24px;
-    color: #222;
+
+  .event-name {
+      font-size: 22px;
   }
-  
-  /* 링크 스타일 */
-  .conference-details a {
-    color: #555555;
-    text-decoration: none;
-    font-weight: bold;
+
+  .event-description {
+      font-size: 14px;
   }
-  
-  .conference-details a:hover {
-    text-decoration: underline;
+
+  .info-header {
+      font-size: 16px;
   }
-  
+
+  .event-details li {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .event-details strong {
+      min-width: auto;
+  }
+
+  .apply-button {
+      font-size: 16px;
+      padding: 10px;
+  }
+}
