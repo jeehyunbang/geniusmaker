@@ -87,7 +87,7 @@ function Home() {
         </div>
       </div>
 
-      {/* 여러 개의 학회/학술 행사 정보 표시 */}
+      {/* 여러 개의 학회/학술 행사 정보 표시*/}
       <div className="grid-container">
         {data.map((item) => (
           <div
