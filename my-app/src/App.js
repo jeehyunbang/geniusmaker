@@ -9,8 +9,10 @@ import Home from './components/Home';
 import Member from './components/Member';
 import SignupForm from './components/SignupForm';
 import LoginModal from './components/LoginModal';
-import ConferenceDetail from './components/ConferenceDetail';
-import Select from './components/Select';
+import ConferenceDetail from "./components/ConferenceDetail";
+import EventDetail from "./components/EventDetail";
+
+import Select from './components/Select'; // Select 컴포넌트 추가
 import SignupFormCon from './components/SignupFormCon';
 import SignupFormCon2 from './components/SignupFormCon2';
 import SignupFormCon3 from './components/SignupFormCon3';
@@ -51,22 +53,29 @@ function App() {
 
         <LoginModal isOpen={isModalOpen} toggleModal={toggleModal} />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/conferences" element={<Conference />} />
-          <Route path="/conferences/:id" element={<ConferenceDetail toggleModal={toggleModal} />} />
-          <Route path="/events" element={<Event />} />
-          <Route path="/members" element={<ConferenceMem />} />
-          <Route path="/members/info" element={<Member />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/select" element={<Select />} />
-          <Route path="/signup" element={<SignupForm />} />
-          <Route path="/signup-con" element={<SignupFormCon />} />
-          <Route path="/signup-con2" element={<SignupFormCon2 />} />
-          <Route path="/signup-con3" element={<SignupFormCon3 />} />
-        </Routes>
-      </div>
-    </ConferenceContext.Provider>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/conferences" element={<Conference />} />
+        <Route path="/conferences/:id" element={<ConferenceDetail toggleModal={toggleModal} />} />
+        <Route path="/events" element={<Event />} />
+        <Route path="/events/:id" element={<EventDetail />} /> {/* ✅ 닫는 태그 추가 */}
+
+        {/* 마이페이지에서 ConferenceMem으로 연결 */}
+        <Route path="/members" element={<ConferenceMem />} /> 
+
+        {/* 기존 Member.js가 필요하면 새로운 경로로 이동 */}
+        <Route path="/members/info" element={<Member />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/select" element={<Select />} /> {/* Select 컴포넌트 라우트 추가 */}
+        <Route path="/signup" element={<SignupForm />} />
+        <Route path="/signup-con" element={<SignupFormCon/>} />
+        <Route path ="/signup-con2" element={<SignupFormCon2/>} />
+        <Route path ="/signup-con3" element={<SignupFormCon3/>} />
+
+        <Route path ="/select" element={<Select/>} />
+      </Routes>
+    </div>
+  </ConferenceContext.Provider>
   );
 }
 
