@@ -131,6 +131,21 @@ export default function SignupForm() {
             </div>
           </div>
 
+          <div className="signupform-group">
+            <label>
+              <span className="signupform-required">*</span>분야
+            </label>
+            <div className="signupform-input-group">
+              <select className="signupform2-domain-select">
+                <option value="공학">공학</option>
+                <option value="디자인">디자인</option>
+                <option value="경제">경제</option>
+                <option value="과학">과학</option>
+                <option value="기타">기타</option>
+              </select>
+            </div>
+          </div>
+
           {/* Submit Button */}
           <button type="submit" className="signupform-submit-button">
             가입하기

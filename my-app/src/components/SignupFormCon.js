@@ -1,18 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom"; // useNavigate import 추가
 import "../css/SignupFormCon.css";
 
 export default function SignupFormCon() {
-  const [emailDomain, setEmailDomain] = useState("naver.com");
-  const [customDomain, setCustomDomain] = useState("");
+  const navigate = useNavigate(); // useNavigate 훅 사용
 
-  const handleDomainChange = (e) => {
-    const value = e.target.value;
-    if (value === "custom") {
-      setEmailDomain("");
-    } else {
-      setEmailDomain(value);
-      setCustomDomain(""); // Reset custom domain input
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault(); // 폼 기본 동작 방지
+    navigate("/signup-con2"); // signupFormCon2로 이동
   };
 
   return (
@@ -31,7 +26,7 @@ export default function SignupFormCon() {
 
       {/* Right Section */}
       <div className="signupformCon-right">
-        <form>
+        <form onSubmit={handleSubmit}>
           {/* 학회명 */}
           <div className="signupformCon-group">
             <label>
@@ -90,7 +85,9 @@ export default function SignupFormCon() {
               <span className="signupformCon-fixed-label">명</span>
             </div>
           </div>
-          <button type="submit" className="signupformCon-submit-button">다음</button>
+          <button type="submit" className="signupformCon-submit-button">
+            다음
+          </button>
         </form>
       </div>
     </div>

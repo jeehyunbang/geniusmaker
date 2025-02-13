@@ -85,10 +85,11 @@
   
   /* 회원가입 버튼 */
   .signupformCon-submit-button {
-    width: 100%; /* 버튼 전체 너비 */
-    max-width: 120px; /* 고정된 최대 크기 */
-    margin-top: 100px; /* 가운데 정렬 */
-    margin-left: 450px;
+    width: 100%;
+    max-width: 120px; /* 버튼 너비 */
+    position: relative;
+    margin-top: 50px; /* 위쪽 여백 */
+    left: calc(100% - 150px); /* 창 크기에 따라 버튼이 이동 */
     background: #007bff;
     color: #fff;
     font-size: 16px;
@@ -97,8 +98,8 @@
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s ease;
-  }
+    transition: all 0.3s ease; /* 부드럽게 이동 효과 */
+}
   
   .signupformCon-submit-button:hover {
     background: #0056b3;
@@ -122,4 +123,5 @@
     margin-right: 5px;
     font-weight: bold;
   }
+  
   
