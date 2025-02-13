@@ -47,7 +47,7 @@ const EventDetail = ({ toggleModal }) => {
       {/* 로그인 안내 메시지 및 버튼 (로그인 상태가 false일 때만 표시) */}
       {!isLoggedIn && (
         <div className="login-overlay">
-          <p>로그인 후 학술행사 정보를 확인하세요.</p>
+          <p>로그인 후 학술 행사 정보를 확인하세요.</p>
           <button className="login-button" onClick={toggleModal}>
             로그인
           </button>
