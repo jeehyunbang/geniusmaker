@@ -82,7 +82,13 @@
     color: #666;
     background-color: rgb(233, 233, 233);
   }
-  
+  .signupform-custom-domain-input {
+    flex: 1;
+    min-width: 100px; /* 최소 너비 */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
   /* 회원가입 버튼 */
   .signupformCon-submit-button {
     width: 100%;

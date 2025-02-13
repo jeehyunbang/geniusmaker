@@ -142,21 +142,15 @@
   .signupformCon2-submit-button:hover {
     background: #0056b3;
   }
-  
-.signupformCon2-button-group {
-    display: flex;
-    justify-content: space-between; /* 양쪽 끝으로 정렬 */
-    margin-top: 30px; /* 버튼과 폼 요소 간 여백 */
-    width: 148%; /* 전체 너비를 늘려 버튼 사이 간격 조정 */
-    margin-left: -307px; /* 왼쪽 여백 자동 */
-    margin-right: auto; /* 오른쪽 여백 자동 */
-    width: calc(100% - 0px); /* 창 크기에 따라 너비 조정 */
+  .signupformCon2-button-group {
+    display: flex; /* 버튼을 가로 정렬 */
+    justify-content: left; /* 버튼 중앙 정렬 */
+    margin-top: 40px; /* 버튼 그룹 상단 여백 */
 }
 
-.signupformCon2-previous-button,
-.signupformCon2-next-button {
-    width: 120px; /* 버튼 너비 */
-    height: 50px; /* 버튼 높이 */
+.signupformCon2-previous-button {
+    width: 120px;
+    height: 50px;
     background: #007bff;
     color: #fff;
     font-size: 16px;
@@ -165,20 +159,32 @@
     border-radius: 8px;
     cursor: pointer;
     transition: background 0.3s ease;
-    margin-top: 90px;
+    margin-right: 50px; /* 이전 버튼과 다음 버튼 사이의 간격 조정 */
 }
 
-.signupformCon2-previous-button:hover,
+.signupformCon2-previous-button:hover {
+    background: #0056b3;
+}
+
+.signupformCon2-next-button {
+    width: 120px;
+    height: 50px;
+    background: #007bff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-left: 50px; /* 다음 버튼과 이전 버튼 사이의 간격 조정 */
+}
+
 .signupformCon2-next-button:hover {
-    background: #0056b3;
+    background: #004099;
 }
 
-  
-  .signupformCon2-previous-button:hover,
-  .signupformCon2-next-button:hover {
-    background: #0056b3;
-  }
-  
+
 /* 반응형 디자인 */
 @media (max-width: 768px) {
     .signupformCon2-button-group {

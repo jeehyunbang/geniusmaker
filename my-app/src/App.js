@@ -16,6 +16,7 @@ import EventDetail from "./components/EventDetail"; // ✅ 추가
 import Select from './components/Select'; // Select 컴포넌트 추가
 import SignupFormCon from './components/SignupFormCon';
 import SignupFormCon2 from './components/SignupFormCon2';
+import SignupFormCon3 from './components/SignupFormCon3';
 
 function App() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -68,6 +69,8 @@ function App() {
         <Route path="/signup" element={<SignupForm />} />
         <Route path="/signup-con" element={<SignupFormCon/>} />
         <Route path ="/signup-con2" element={<SignupFormCon2/>} />
+        <Route path ="/signup-con3" element={<SignupFormCon3/>} />
+
         <Route path ="/select" element={<Select/>} />
       </Routes>
     </div>

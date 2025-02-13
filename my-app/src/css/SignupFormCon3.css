@@ -1,0 +1,157 @@
+/* 전체 레이아웃 */
+.signupformCon3-container {
+    display: flex;
+    justify-content: space-between; /* 좌우 배치 */
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1200px; /* 고정된 최대 너비 */
+    margin: 0 auto; /* 가운데 정렬 */
+    padding: 50px 20px; /* 적당한 여백 */
+    box-sizing: border-box;
+}
+
+/* 왼쪽 설명 영역 */
+.signupformCon3-left {
+    flex: 1;
+    max-width: 300px; /* 고정된 크기 */
+    padding-right: 30px;
+    margin-top: -25px;
+}
+
+.signupformCon3-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.signupformCon3-subtitle {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.signupformCon3-note {
+    font-size: 14px;
+    color: #007bff;
+}
+
+/* 오른쪽 입력 폼 영역 */
+.signupformCon3-right {
+    flex: 2;
+    max-width: 800px; /* 고정된 크기 */
+}
+
+/* 입력 필드 공통 */
+.signupformCon3-input-group {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    position: relative;
+    background-color: rgb(233, 233, 233);
+    max-width: 80%;
+}
+
+.signupformCon3-input-text {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background-color: rgb(233, 233, 233);
+}
+
+.signupformCon3-textarea {
+    width: 100%;
+    height: 120px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 14px;
+    resize: none;
+    background-color: rgb(233, 233, 233);
+}
+
+.signupformCon3-input-file {
+    width: 100%;
+    font-size: 14px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: rgb(233, 233, 233);
+}
+
+/* 버튼 그룹 */
+.signupformCon3-button-group {
+    display: flex;
+    justify-content: left; /* 버튼 정렬 */
+    margin-top: 40px;
+}
+
+.signupformCon3-previous-button {
+    width: 120px;
+    height: 50px;
+    background: #007bff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-right: 50px; /* 버튼 간 간격 */
+}
+
+.signupformCon3-previous-button:hover {
+    background: #0056b3;
+}
+
+.signupformCon3-next-button {
+    width: 120px;
+    height: 50px;
+    background: #007bff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-left: 50px; /* 버튼 간 간격 */
+}
+
+.signupformCon3-next-button:hover {
+    background: #004099;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .signupformCon3-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .signupformCon3-left {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .signupformCon3-right {
+        max-width: 100%;
+    }
+
+    .signupformCon3-button-group {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .signupformCon3-previous-button,
+    .signupformCon3-next-button {
+        width: 100%;
+        max-width: 200px;
+        margin: 10px 0;
+    }
+}
