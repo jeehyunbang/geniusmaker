@@ -1,13 +1,7 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import "../css/ConferenceMem.css";
 
 const ConferenceMem = () => {
-  const navigate = useNavigate();
-
-  const handleRegisterClick = () => {
-    navigate("/register");
-  };
   const conference = {
     name: "린",
     institution: "루트임팩트",
@@ -22,15 +16,13 @@ const ConferenceMem = () => {
     <div className="conference-page">
       {/* 마이페이지 제목 */}
       <header className="member-header">마이페이지</header>
-      
+
       {/* 학술 행사 등록 안내 */}
       <div className="login-section">
         <p className="login-tooltip">
           학회의 학술행사 정보를 등록해주세요 <span className="tooltip-icon">💬</span>
         </p>
-        <button className="login-button" onClick={handleRegisterClick}>
-          학술 행사 등록
-        </button>
+        <button className="login-button">학술 행사 등록</button>
       </div>
 
       {/* 학회 정보 */}
@@ -51,15 +43,15 @@ const ConferenceMem = () => {
             <h3 className="section-title">기본정보</h3>
             <div className="info-row">
               <span className="label">학회명</span>
-              <span className="info-box">{conference.name}</span>
+              <input className="info-box" value={conference.name} readOnly />
             </div>
             <div className="info-row">
               <span className="label">소속 기관</span>
-              <span className="info-box">{conference.institution}</span>
+              <input className="info-box" value={conference.institution} readOnly />
             </div>
             <div className="info-row">
               <span className="label">분야</span>
-              <span className="info-box">{conference.field}</span>
+              <input className="info-box" value={conference.field} readOnly />
             </div>
           </div>
 
@@ -68,9 +60,9 @@ const ConferenceMem = () => {
             <h3 className="section-title">회원 및 논문 현황</h3>
             <div className="info-row">
               <span className="label">학회 회원 수</span>
-              <span className="info-box">{conference.members}</span>
+              <input className="info-box" value={conference.members} readOnly />
               <span className="label">발행 논문 수</span>
-              <span className="info-box">{conference.papers}</span>
+              <input className="info-box" value={conference.papers} readOnly />
             </div>
           </div>
 
@@ -79,7 +71,7 @@ const ConferenceMem = () => {
             <h3 className="section-title">참가 및 비용</h3>
             <div className="info-row">
               <span className="label">학회 참가비</span>
-              <span className="info-box">{conference.fee} 원</span>
+              <input className="info-box" value={`${conference.fee} 원`} readOnly />
             </div>
             <div className="info-row">
               <span className="label">논문 개제 비용</span>
