@@ -1,13 +1,13 @@
-/* 화면 중앙 정렬 */
+/* 화면 중앙 정렬 *//*
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    gap: 20px; /* 네모 간 간격 */
+    gap: 20px;
   }
   
-  /* 둥근 네모 */
+  /* 둥근 네모 *//*
   .box {
     display: flex;
     justify-content: center;
@@ -25,9 +25,77 @@
     transition: transform 0.3s ease, background-color 0.3s ease;
   }
   
-  /* Hover 효과 */
+  /* Hover 효과 *//*
   .box:hover {
     transform: scale(1.1);
     background-color: #0056b3;
   }
-  
+
+  /* 전체 레이아웃 */
+.select-container {
+  display: flex;
+  justify-content: space-between; /* 좌우 배치 */
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1200px; /* 고정된 최대 너비 */
+  margin: 0 auto; /* 가운데 정렬 */
+  margin-top: 250px;
+  padding: 50px 20px; /* 적당한 여백 */
+  box-sizing: border-box;
+}
+
+/* 왼쪽 설명 영역 */
+.select-left {
+  flex: 1;
+  max-width: 300px; /* 고정된 크기 */
+  padding-right: 30px;
+}
+
+.select-title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 20px;
+}
+
+.select-subtitle {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.select-note {
+  font-size: 14px;
+  color: #007bff;
+}
+
+/* 오른쪽 버튼 영역 */
+.select-right {
+  flex: 2;
+  max-width: 800px; /* 고정된 크기 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* 버튼 간 간격 */
+}
+
+/* 버튼 스타일 */
+.select-button {
+  width: 150px;
+  height: 150px;
+  background-color: #007bff;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.select-button:hover {
+  transform: scale(1.1);
+  background-color: #0056b3;
+}

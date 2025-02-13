@@ -8,7 +8,6 @@
   margin: 0 auto; /* 가운데 정렬 */
   padding: 50px 20px; /* 적당한 여백 */
   box-sizing: border-box;
-  min-height: 100vh; /* 화면 꽉 차게 */
 }
 
 /* 왼쪽 설명 영역 */
@@ -16,6 +15,7 @@
   flex: 1;
   max-width: 300px; /* 고정된 크기 */
   padding-right: 30px;
+  margin-top: -25px;
 }
 
 .signupform-title {
