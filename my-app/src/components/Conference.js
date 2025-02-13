@@ -25,31 +25,26 @@ const Conference = () => {
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태
   const [pageGroup, setPageGroup] = useState(0); // 현재 페이지 그룹 상태
 
-  // API 호
+  // API 호출
   useEffect(() => {
     const fetchConferences = async () => {
       try {
-        // 기본 학회 정보(ID 1~) 가져오기
-        let url = `http://43.200.115.60/api/conference/search?`;
-  
-        // 검색 및 필터가 설정된 경우 쿼리 문자열 추가
         const query = new URLSearchParams({
           keyword: search || "",
           region: selectedRegion || "",
           researchType: selectedCategory || "",
         }).toString();
-  
-        url += query;
-  
+
+        const url = `http://43.200.115.60/api/conference/search?${query}`;
         console.log("API 요청 URL:", url);
-  
+
         const response = await fetch(url, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
         });
-  
+
         if (response.ok) {
           const data = await response.json();
           console.log("API 응답 데이터:", data);
@@ -63,10 +58,9 @@ const Conference = () => {
         setConferences([]);
       }
     };
-  
+
     fetchConferences();
   }, [search, selectedCategory, selectedRegion]);
-  
 
   // 총 페이지 수
   const totalPages = Math.ceil(conferences.length / ITEMS_PER_PAGE);
@@ -81,7 +75,7 @@ const Conference = () => {
   );
 
   // 현재 페이지에 해당하는 학회 데이터
-  const currentEvents = conferences.slice(
+  const currentConferences = conferences.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   );
@@ -137,12 +131,21 @@ const Conference = () => {
 
       {/* 학회 정보 섹션 */}
       <div className="event-section">
-        <h2 className="section-title">학회정보</h2>
+        <h2 className="section-title">학회 정보</h2>
         <p className="subtitle">유용한 학회 정보를 모아봤어요</p>
 
         <div className="event-grid">
-          {currentEvents.length > 0 ? (
-            currentEvents.map((conf, index) => <ConferenceCard key={index} {...conf} />)
+          {currentConferences.length > 0 ? (
+            currentConferences.map((conf) => (
+              <ConferenceCard
+                key={conf.id}
+                id={conf.id}
+                category={conf.category}
+                title={conf.conferenceName}
+                location={conf.organizationLocation}
+                image={conf.thumbnail}
+              />
+            ))
           ) : (
             <p>검색 결과가 없습니다.</p>
           )}
