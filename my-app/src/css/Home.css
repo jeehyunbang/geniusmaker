@@ -439,3 +439,10 @@
     margin-right: 5px;
     color: #dc3545; /* 붉은 핀 아이콘 */
 }
+.main-banner-image {
+    width: 100%; /* 가로로 꽉 채우기 */
+    height: auto; /* 비율 유지 */
+    object-fit: cover; /* 이미지 크기가 컨테이너에 맞게 조정 */
+    border-radius: 5px; /* 모서리 둥글게 */
+  }
+  

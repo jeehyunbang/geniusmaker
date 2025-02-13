@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../css/Home.css";
 import LoginModal from "./LoginModal";
 import { useNavigate } from "react-router-dom";
+import image from "../image.png";
 
 function Home() {
   const navigate = useNavigate();
@@ -77,7 +78,7 @@ function Home() {
   return (
     <div className="home-content">
       <div className="top-container">
-        <div className="gray-box L"></div>
+        <img src={image} alt="메인 배너" className="main-banner-image" />
       </div>
 
       <div className="login-section">
@@ -159,21 +160,6 @@ function Home() {
             </div>
           </div>
         ))}
-      </div>
-
-
-
-      <div className="popular-section">
-        <div className="popular-text">
-          <h3>
-            오늘의 인기
-            <br />
-            학회&학술행사
-            <br />
-            정보예요 👀
-          </h3>
-        </div>
-        <div className="popular-box gray-box"></div>
       </div>
     </div>
   );
